@@ -1,0 +1,50 @@
+
+// Fonts
+//@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+@import "libs/bourbon/bourbon";
+@import "libs/neat/neat";
+
+// Variables
+@import "variables";
+// partials
+// @import "libs/animate"; // big lib add if needed
+@import "partials/grid";
+@import "partials/colors";
+@import "partials/extends";
+@import "partials/mixins";
+@import "partials/base";
+@import "partials/typography";
+@import "partials/layouts";
+//@import "partials/construction";
+
+// site elements add more as site grows in complexity
+@import "elements/header";
+@import "elements/footer";
+@import "elements/home";
+@import "elements/standard";
+@import "elements/premember";
+@import "elements/forms";
+@import "elements/member-home";
+@import "elements/member";
+@import "elements/reports";
+
+/*@import "elements/sidebar";
+@import "elements/free-lessons";
+@import "elements/member-lessons";
+@import "elements/passions";
+@import "elements/contact-us";
+@import "elements/forum";
+@import "elements/tml";
+@import "elements/mailbox";
+@import "elements/single-lesson";
+@import "elements/testimonials";
+@import "elements/video-submit";*/
+
+.navbar-laravel {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}

@@ -1,0 +1,95 @@
+// mixins
+
+@mixin clearRow($nth) {
+	&:nth-child(#{$nth}+1) {
+		clear: both;
+	}
+}
+
+// Omega Reset
+@mixin omega-reset($nth, $columns) {
+  &:nth-child(#{$nth}) { margin-right: flex-gutter($columns); }
+  &:nth-child(#{$nth}+1) { clear: none }
+}
+
+// Vertical Align
+@mixin vertical-align {
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+@mixin horizontal-align {
+	position: relative;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+
+@mixin calvertbold {
+    font-family: 'calvertmtbold2', sans-serif;
+    font-weight: 700;
+}
+
+@mixin poiretreg {
+    font-family: 'poiretoneregular', sans-serif;
+    font-weight: 300;
+}
+
+@mixin robotoblack {
+    font-family: 'robotoblack', sans-serif;
+    font-weight: 400;
+}
+
+@mixin robotoblit {
+    font-family: 'robotoblackitalic', sans-serif;
+    font-weight: 400;
+}
+
+@mixin robotobold {
+    font-family: 'robotobold', sans-serif;
+    font-weight: 700;
+}
+
+@mixin robotoboldit {
+    font-family: 'robotobolditalic', sans-serif;
+    font-weight: 700;
+}
+
+@mixin robotoit {
+    font-family: 'robotoitalic', sans-serif;
+    font-weight: 400;
+}
+
+@mixin robotolight {
+    font-family: 'robotolight', sans-serif;
+    font-weight: 200;
+}
+
+@mixin robotolightit {
+    font-family: 'robotolightitalic', sans-serif;
+    font-weight: 200;
+}
+
+@mixin robotomed {
+    font-family: 'robotomedium', sans-serif;
+    font-weight: 500;
+}
+
+@mixin robotomedit {
+    font-family: 'robotomediumitalic', sans-serif;
+    font-weight: 500;
+}
+
+@mixin robotoreg {
+    font-family: 'robotoregular', sans-serif;
+    font-weight: 300;
+}
+
+@mixin foliocondensedbq {
+    font-family: 'foliocondensedbq', sans-serif;
+    font-weight: 400;
+}

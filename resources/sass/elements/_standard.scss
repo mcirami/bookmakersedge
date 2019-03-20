@@ -1,0 +1,149 @@
+.standard {
+	@include span-columns(12);
+	padding: 40px;
+	background: $lightGray;
+	-webkit-box-shadow: -2px 2px 3px 1px rgba(0,0,0,.14);
+	-moz-box-shadow: -2px 2px 3px 1px rgba(0,0,0,.14);
+	box-shadow: -2px 2px 3px 1px rgba(0,0,0,.14);
+	border: 1px solid $borderGray;
+	color: $black;
+	
+	@include media($mobile){
+		margin: 40px 0;
+		padding: 20px;
+	}
+
+	a {
+		color: $red;
+
+		&:hover {
+			color: $darkRed;
+		}
+	}
+	
+	h3 {
+		@include span-columns(12);
+		font-size: 18px;
+		text-decoration: underline;
+		text-transform: none;
+		font-weight: lighter;
+		
+		@include media($tablet){
+			font-size: 16px;
+		}
+		
+		@include media($mobile){
+			font-size: 14px;
+		}
+	}
+	
+	p {
+		width: 100%;
+		display: block;
+		margin: 5px 0 20px;
+		
+		@include media($tablet){
+			font-size: 14px;
+		}
+		
+		@include media($mobile){
+			font-size: 12px;
+		}
+		
+		span {
+			@include robotobold;
+		}
+	}
+	
+	ul {
+		@include span-columns(12);
+		list-style: lower-roman;
+		padding-left: 40px;
+		
+		@include media($mobile){
+			padding-left: 20px;
+		}
+		
+		li {
+			@include robotobold;
+            width: 100%;
+			margin-bottom: 20px;
+			
+			@include media($tablet){
+				font-size: 14px;
+			}
+			
+			@include media($mobile){
+				font-size: 12px;
+			}
+
+			p {
+				@include robotomed;
+			}
+		}
+	}
+	
+	.address {
+		@include span-columns(12);
+		font-family: 'robotoregular', sans-serif;
+		padding-left: 40px;
+		margin-bottom: 20px;
+		
+		@include media($mobile){
+			padding-left: 20px;
+		}
+		
+		.row {
+			@include span-columns(12);
+			text-align: left;
+			
+			&:last-child {
+				padding-left: 15%;
+				
+				@include media($mobile){
+					padding-left: 24%;
+				}
+			}
+			
+			.label {
+				width: 15%;
+				float: left;
+				
+				@include media($mobile){
+					width: 24%;
+				}
+			}
+			
+			h4 {
+				text-align: left;
+				font-size: 16px;
+				margin: 0;
+				font-weight: normal;
+				
+				@include media($tablet){
+					font-size: 14px;
+				}
+				
+				@include media($mobile){
+					font-size: 12px;
+				}
+			}
+		}
+	}
+}
+
+.member .standard h3 {
+	@include span-columns(12);
+	font-size: 18px;
+	text-decoration: underline;
+	text-transform: none;
+	font-weight: lighter;
+
+	@include media($tablet){
+		font-size: 16px;
+	}
+
+	@include media($mobile){
+		font-size: 14px;
+	}
+}
