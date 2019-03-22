@@ -13277,6 +13277,21 @@ p {
   }
 }
 
+.picks_page .form_wrapper .info_wrap.pick_submit {
+  float: left;
+  display: block;
+  margin-right: 2.3576515979%;
+  width: 100%;
+}
+
+.picks_page .form_wrapper .info_wrap.pick_submit:last-child {
+  margin-right: 0;
+}
+
+.picks_page .form_wrapper .info_wrap.pick_submit:before {
+  content: none;
+}
+
 .picks_page .form_wrapper .cancel {
   width: 25px;
   position: absolute;

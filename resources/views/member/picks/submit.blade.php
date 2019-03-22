@@ -117,7 +117,7 @@
 
                         <div class="form-group my_row d-block d-sm-flex align-content-center pick_content">
 
-                            <div class="info_wrap m-auto d-block d-md-flex justify-content-between">
+                            <div class="info_wrap pick_submit m-auto d-block d-md-flex justify-content-between">
                                 <div class="column">
                                     <label for="sport" class="col-form-label">{{ __('Sport') }}</label>
 

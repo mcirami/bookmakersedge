@@ -759,6 +759,14 @@
 					-o-transform: rotate(44deg);
 				}
 			}
+
+			&.pick_submit {
+				@include span-columns(12);
+
+				&:before {
+					content: none;
+				}
+			}
 		}
 
 		.cancel {
