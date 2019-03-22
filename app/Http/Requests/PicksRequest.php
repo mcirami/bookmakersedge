@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Carbon\Carbon;
+use Illuminate\Validation\Rule;
 
 class PicksRequest extends FormRequest
 {
@@ -37,7 +39,9 @@ class PicksRequest extends FormRequest
 
 	    return [
 	    	'sport' => 'required|string|max:255',
-		    'team' => 'required|string|max:255',
+		    'team' => Rule::unique('picks')->where(function ($query) {
+			    return $query->where('day', Carbon::today());
+		    }),
 		    'line' => 'required|string|max:255',
 		    'time' => 'required|string|max:255'
         ];

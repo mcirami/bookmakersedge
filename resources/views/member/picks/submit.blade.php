@@ -74,14 +74,14 @@
                                 <div class="col-12 col-md-3">
                                     <label for="team{{$count}}" class="col-form-label">{{ __('Team') }} </label>
 
-                                    <input id="team{{$count}}" type="text" class="form-control" name="team" value="{{$pick['team']}}" required autofocus>
+                                    <input id="team{{$count}}" type="text" class="form-control" name="team" value="{{$pick['team']}}" required '>
 
                                 </div>
 
                                 <div class="col-12 col-md-2">
                                     <label for="line{{$count}}" class="col-form-label">{{ __('Line') }}</label>
 
-                                    <input id="line{{$count}}" type="text" class="form-control" name="line" value="{{$pick['line']}}" required autofocus>
+                                    <input id="line{{$count}}" type="text" class="form-control" name="line" value="{{$pick['line']}}" required '>
 
                                 </div>
                                 <div class="col-12 col-md-3 mb-4 mb-md-0">
@@ -123,13 +123,13 @@
 
                                     <select class="form-control" name="sport" id="sport" required>
                                         <option value=""></option>
-                                        <option value="NFL">NFL</option>
-                                        <option value="NCAAF">NCAAF</option>
-                                        <option value="NBA">NBA</option>
-                                        <option value="NCAAB">NCAAB</option>
-                                        <option value="MLB">MLB</option>
-                                        <option value="NHL">NHL</option>
-                                        <option value="GOLF">GOLF</option>
+                                        <option value="NFL" @php if( old('sport') == "NFL") echo 'selected' @endphp>NFL</option>
+                                        <option value="NCAAF" @php if( old('sport') == "NCAAF") echo 'selected' @endphp>NCAAF</option>
+                                        <option value="NBA" @php if( old('sport') == "NBA") echo 'selected' @endphp>NBA</option>
+                                        <option value="NCAAB" @php if( old('sport') == "NCAAB") echo 'selected' @endphp>NCAAB</option>
+                                        <option value="MLB" @php if( old('sport') == "MLB") echo 'selected' @endphp>MLB</option>
+                                        <option value="NHL" @php if( old('sport') == "NHL") echo 'selected' @endphp>NHL</option>
+                                        <option value="GOLF" @php if( old('sport') == "GOLF") echo 'selected' @endphp>GOLF</option>
                                     </select>
 
                                     @if ($errors->has('sport'))
@@ -142,7 +142,7 @@
                                 <div class="column">
                                     <label for="team" class="col-form-label">{{ __('Team') }} </label>
 
-                                    <input id="team" type="text" class="form-control" name="team" value="{{ old('team') }}" required autofocus>
+                                    <input id="team" type="text" class="form-control" name="team" value="{{ old('team') }}" required '>
 
                                     @if ($errors->has('team'))
                                         <span class="invalid-feedback">
@@ -154,7 +154,7 @@
                                 <div class="column">
                                     <label for="line" class="col-form-label">{{ __('Line') }}</label>
 
-                                    <input id="line" type="text" class="form-control" name="line" value="{{ old('line') }}" required autofocus>
+                                    <input id="line" type="text" class="form-control" name="line" value="{{ old('line') }}" required '>
 
                                     @if ($errors->has('line'))
                                         <span class="invalid-feedback">
@@ -164,7 +164,7 @@
                                 </div>
                                 <div class="column">
                                     <label for="time" class="col-form-label">{{ __('Game Time') }} (EST)</label>
-                                    <input id="time" type="text" class="timepicker form-control" name="time"/>
+                                    <input id="time" type="text" class="timepicker form-control" name="time" value="{{ old('time') }}"/>
 
                                     @if ($errors->has('time'))
                                         <span class="invalid-feedback">
