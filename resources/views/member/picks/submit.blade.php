@@ -15,38 +15,113 @@
                 </div>
             @endif
 
-            <div class="content_wrap full_width form_wrapper d-inline-block">
+            @if(!$todaysPicks->isEmpty())
+                <div class="form_wrapper mb-5 row update_picks_form">
+                    <h3 class="text-center w-100 pb-3">Picks You Submitted Today</h3>
 
-                <form class="picks_form full_width" action="{{ url('/submit-picks/save') }}" method="post">
+                    @php $count  = 0 @endphp
+
+                    @foreach($todaysPicks as $pick)
+                        @php $count++ @endphp
+                        <form class="col-12" action="{{ url('/submit-picks/update') }}" method="post">
+
+                            {{ csrf_field() }}
+                            <div class="row pick_row current_picks">
+                                <div class="col-12 mb-3">
+                                    <h4 class="font-weight-bold">Submitted at: {{$pick['updated_at']->format('h:i')}} EST </h4>
+                                </div>
+                                <div class="col-12 col-sm-2">
+                                    <p>{{$pick['sport']}}</p>
+                                </div>
+                                <div class="col-12 col-sm-3">
+                                    <p>{{$pick['team']}}</p>
+                                </div>
+                                <div class="col-12 col-sm-2">
+                                    <p>{{$pick['line']}}</p>
+                                </div>
+                                <div class="col-12 col-sm-3">
+                                    <p>{{$pick['game_time']}} EST</p>
+                                </div>
+                                <div class="col-12 col-sm-2">
+                                    @if(strtotime($now) < strtotime($pick['game_time']))
+                                        <button name="picks_edit" class="button black w-100 d-block edit_pick">Edit</button>
+                                    @else
+                                       <p>Game Started</p>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="row pick_row text-left" style="display: none;">
+                                <input type="hidden" name="pick_id" value="{{$pick['id']}}">
+                                <div class="col-12">
+                                    <img class="cancel" src="<?php echo asset('images/close-button.png'); ?>" alt="">
+                                </div>
+                                <div class="col-12 col-md-2">
+                                    <label for="sport{{$count}}" class="col-form-label">{{ __('Sport') }}</label>
+
+                                    <select class="form-control" name="sport" id="sport{{$count}}" required>
+                                        <option value=""></option>
+                                        <option value="NFL" @php if( $pick['sport'] == "NFL") echo 'selected' @endphp >NFL</option>
+                                        <option value="NCAAF" @php if( $pick['sport'] == "NCAAF") echo 'selected' @endphp>NCAAF</option>
+                                        <option value="NBA" @php if( $pick['sport'] == "NBA") echo 'selected' @endphp>NBA</option>
+                                        <option value="NCAAB" @php if( $pick['sport'] == "NCAAB") echo 'selected' @endphp>NCAAB</option>
+                                        <option value="MLB" @php if( $pick['sport'] == "MLB") echo 'selected' @endphp>MLB</option>
+                                        <option value="NHL" @php if( $pick['sport'] == "NHL") echo 'selected' @endphp>NHL</option>
+                                        <option value="GOLF" @php if( $pick['sport'] == "GOLF") echo 'selected' @endphp>GOLF</option>
+                                    </select>
+
+                                </div>
+
+                                <div class="col-12 col-md-3">
+                                    <label for="team{{$count}}" class="col-form-label">{{ __('Team') }} </label>
+
+                                    <input id="team{{$count}}" type="text" class="form-control" name="team" value="{{$pick['team']}}" required autofocus>
+
+                                </div>
+
+                                <div class="col-12 col-md-2">
+                                    <label for="line{{$count}}" class="col-form-label">{{ __('Line') }}</label>
+
+                                    <input id="line{{$count}}" type="text" class="form-control" name="line" value="{{$pick['line']}}" required autofocus>
+
+                                </div>
+                                <div class="col-12 col-md-3 mb-4 mb-md-0">
+                                    <label for="time{{$count}}" class="col-form-label">{{ __('Game Time') }} (EST)</label>
+                                    <input id="time{{$count}}" type="text" class="timepicker form-control" name="time" value="{{$pick['game_time']}}"/>
+                                </div>
+                                <div class="col-12 col-md-2 d-flex submit_button_wrap">
+                                    <div class="align-self-end w-100">
+                                        <div class="text-center">
+                                            <button name="picks_update" class="button red d-block w-100" disabled>Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    @endforeach
+                </div>
+            @endif
+
+            <div class="content_wrap full_width form_wrapper picks_form d-inline-block">
+
+                <form class="full_width" action="{{ url('/submit-picks/save') }}" method="post">
 
                     {{ csrf_field() }}
 
-                    <h3 class="text-center">Make your picks below and submit for user to see</h3>
+                    <h3 class="text-center">Make your new pick below and submit for user to see</h3>
                     <div class="form-group my_row">
                         <p>Type in Format: Sport (eg. NFL) - City and Team (eg. St. Louis Cardinals) - Line (eg. -.75)</p>
-                    </div>
-
-                    <div class="full_width">
-                        <div class="row mb-5">
-                            <div class="col-10 col-md-11 col-lg-7 mx-auto d-flex justify-content-center">
-                                <a id="add_pick" class="button yellow mr-2" href="#">Add Pick</a>
-                                <a id="remove_pick" class="button black" href="#">Remove Pick</a>
-                            </div>
-                        </div>
-
                     </div>
 
                     <div class="picks_wrap full_width">
 
                         <div class="form-group my_row d-block d-sm-flex align-content-center pick_content">
-                            <div class="icon_wrap mt-auto mb-4 mb-sm-auto ml-auto mr-0">
-                                <h3>1</h3>
-                            </div>
-                            <div class="info_wrap m-auto d-block d-sm-flex justify-content-between">
-                                <div class="column">
-                                    <label for="sport1" class="col-form-label">{{ __('Sport') }}</label>
 
-                                    <select class="form-control" name="pick_1[sport]" id="sport1" required>
+                            <div class="info_wrap m-auto d-block d-md-flex justify-content-between">
+                                <div class="column">
+                                    <label for="sport" class="col-form-label">{{ __('Sport') }}</label>
+
+                                    <select class="form-control" name="sport" id="sport" required>
                                         <option value=""></option>
                                         <option value="NFL">NFL</option>
                                         <option value="NCAAF">NCAAF</option>
@@ -57,145 +132,54 @@
                                         <option value="GOLF">GOLF</option>
                                     </select>
 
-                                </div>
-
-                                <div class="column">
-                                    <label for="team1" class="col-form-label">{{ __('Team') }} </label>
-
-                                    <input id="team1" type="text" class="form-control" name="pick_1[team]" value="{{ old('team1') }}" required autofocus>
-
-                                    {{--@if ($errors->has('teamOne'))
+                                    @if ($errors->has('sport'))
                                         <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('teamOne') }}</strong>
+                                            <strong>{{ $errors->first('sport') }}</strong>
                                         </span>
-                                    @endif--}}
+                                    @endif
                                 </div>
 
                                 <div class="column">
-                                    <label for="line1" class="col-form-label">{{ __('Line') }}</label>
+                                    <label for="team" class="col-form-label">{{ __('Team') }} </label>
 
-                                    <input id="line1" type="text" class="form-control" name="pick_1[line]" value="{{ old('line1') }}" required autofocus>
+                                    <input id="team" type="text" class="form-control" name="team" value="{{ old('team') }}" required autofocus>
 
-                                   {{-- @if ($errors->has('lineOne'))
+                                    @if ($errors->has('team'))
                                         <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('lineOne') }}</strong>
-                                    </span>
-                                    @endif--}}
-                                </div>
-                                <div class="column">
-                                    <label for="time1" class="col-form-label">{{ __('Game Time') }} (EST)</label>
-                                    <input id="time1" type="text" class="timepicker form-control" name="pick_1[game_time]"/>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group my_row d-block d-sm-flex align-content-center pick_content">
-                            <div class="icon_wrap mt-auto mb-4 mb-sm-auto ml-auto mr-0">
-                                <h3>2</h3>
-                            </div>
-                            <div class="info_wrap m-auto d-block d-sm-flex justify-content-between">
-                                <div class="column">
-                                    <label for="sport2" class="col-form-label">{{ __('Sport') }}</label>
-
-                                    <select class="form-control" name="pick_2[sport]" id="sport2" required>
-                                        <option value=""></option>
-                                        <option value="NFL">NFL</option>
-                                        <option value="NCAAF">NCAAF</option>
-                                        <option value="NBA">NBA</option>
-                                        <option value="NCAAB">NCAAB</option>
-                                        <option value="MLB">MLB</option>
-                                        <option value="NHL">NHL</option>
-                                        <option value="GOLF">GOLF</option>
-                                    </select>
-                                </div>
-
-                                <div class="column">
-                                    <label for="team2" class="col-form-label">{{ __('Team') }} </label>
-
-                                    <input id="team2" type="text" class="form-control" name="pick_2[team]" value="{{ old('team2') }}" required autofocus>
-
-                                    {{--@if ($errors->has('teamTwo'))
-                                        <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('teamTwo') }}</strong>
+                                            <strong>{{ $errors->first('team') }}</strong>
                                         </span>
-                                    @endif--}}
+                                    @endif
                                 </div>
 
                                 <div class="column">
-                                    <label for="line2" class="col-form-label">{{ __('Line') }}</label>
+                                    <label for="line" class="col-form-label">{{ __('Line') }}</label>
 
-                                    <input id="line2" type="text" class="form-control" name="pick_2[line]" value="{{ old('line2') }}" required autofocus>
+                                    <input id="line" type="text" class="form-control" name="line" value="{{ old('line') }}" required autofocus>
 
-                                    {{--@if ($errors->has('lineTwo'))
+                                    @if ($errors->has('line'))
                                         <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('lineTwo') }}</strong>
-                                    </span>
-                                    @endif--}}
-                                </div>
-                                <div class="column">
-                                    <label for="time2" class="col-form-label">{{ __('Game Time') }} (EST)</label>
-                                    <input id="time2" type="text" class="timepicker form-control" name="pick_2[game_time]"/>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group my_row d-block d-sm-flex align-content-center pick_content">
-                            <div class="icon_wrap mt-auto mb-4 mb-sm-auto ml-auto mr-0">
-                                <h3>3</h3>
-                            </div>
-                            <div class="info_wrap m-auto d-block d-sm-flex justify-content-between">
-                                <div class="column">
-                                    <label for="sport3" class="col-form-label">{{ __('Sport') }}</label>
-
-                                    <select class="form-control" name="pick_3[sport]" id="sport3" required>
-                                        <option value=""></option>
-                                        <option value="NFL">NFL</option>
-                                        <option value="NCAAF">NCAAF</option>
-                                        <option value="NBA">NBA</option>
-                                        <option value="NCAAB">NCAAB</option>
-                                        <option value="MLB">MLB</option>
-                                        <option value="NHL">NHL</option>
-                                        <option value="GOLF">GOLF</option>
-                                    </select>
-                                </div>
-
-                                <div class="column">
-                                    <label for="team3" class="col-form-label">{{ __('Team') }} </label>
-
-                                    <input id="team3" type="text" class="form-control" name="pick_3[team]" value="{{ old('team3') }}" required autofocus>
-
-                                    {{--@if ($errors->has('teamThree'))
-                                        <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('teamThree') }}</strong>
+                                            <strong>{{ $errors->first('line') }}</strong>
                                         </span>
-                                    @endif--}}
+                                    @endif
                                 </div>
-
                                 <div class="column">
-                                    <label for="line3" class="col-form-label">{{ __('Line') }}</label>
+                                    <label for="time" class="col-form-label">{{ __('Game Time') }} (EST)</label>
+                                    <input id="time" type="text" class="timepicker form-control" name="time"/>
 
-                                    <input id="line3" type="text" class="form-control" name="pick_3[line]" value="{{ old('line3') }}" required autofocus>
-
-                                   {{-- @if ($errors->has('lineThree'))
+                                    @if ($errors->has('time'))
                                         <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('lineThree') }}</strong>
-                                    </span>
-                                    @endif--}}
-                                </div>
-                                <div class="column">
-                                    <label for="time3" class="col-form-label">{{ __('Game Time') }} (EST)</label>
-                                    <input id="time3" type="text" class="timepicker form-control" name="pick_3[game_time]" />
+                                            <strong>{{ $errors->first('time') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
                     </div><!-- picks_wrap -->
 
                     <div class="form-group my_row mt-4">
-                        <div class="col-12">
-                            <div class="submit_button_wrap">
-                                <div id="form_submit_span" class="mb-2 text-center">
-                                    <button name="picks_submit" id="picks_submits" class="button red">Submit</button>
-                                </div>
+                        <div class="submit_button_wrap">
+                            <div id="form_submit_span" class="mb-2 text-center">
+                                <button name="picks_submit" id="picks_submits" class="button red d-block w-100">Submit</button>
                             </div>
                         </div>
                     </div>

@@ -18,13 +18,17 @@
 		padding: 15px;
 	}
 
-	.picks_form {
+	&.picks_form {
 
 		h3 {
-			font-size: 18px;
+			font-size: 24px;
+
+			@include media($mobile) {
+				font-size: 20px;
+			}
 		}
 	}
-	
+
 	.top_section {
 		@include span-columns(12);
 		text-align: center;
@@ -96,7 +100,7 @@
 
 	.column {
 		@include span-columns(12);
-		
+
 		@include media($tablet){
 			float: none;
 			margin-bottom: 20px;
@@ -669,6 +673,23 @@
 			padding: 20px 10px;
 		}
 
+		&.update_picks_form {
+
+			h3 {
+				border-bottom: 2px solid $black;
+
+				@include media($mobile) {
+					font-size: 20px;
+				}
+			}
+
+			.pick_row {
+				border-bottom: 1px solid;
+				border-color: rgba(0,0,0,.4);
+				padding: 20px 0;
+			}
+		}
+
 
 		&.grade_page {
 			width: 75%;
@@ -689,17 +710,45 @@
 			margin-bottom: 20%;
 		}
 
-		.button {
-			width: 90%;
-		}
-
 		p {
 			font-size: 12px;
 			text-align: center;
 		}
 
+		.current_picks {
+
+			p {
+				text-align: left;
+				font-size: 18px;
+
+				@include media($tablet) {
+					font-size: 16px;
+				}
+
+				@include media($mobile) {
+					font-size: 14px;
+				}
+			}
+
+			h4 {
+				text-align: left;
+
+				@include media($smallMobile) {
+					text-align: center;
+				}
+			}
+		}
+
+		.cancel {
+			width: 25px;
+			position: absolute;
+			right: 14px;
+			top: -10px;
+			cursor: pointer;
+		}
+
 		.info_wrap {
-			width: 82.9403914003%;
+			@include span-columns(12);
 			padding: 10px 15px 20px;
 			text-align: left;
 			background: #fff;
@@ -707,41 +756,6 @@
 			border-radius: 4px;
 			-webkit-border-radius: 4px;
 			-moz-border-radius: 4px;
-
-			@include media($smallMobile) {
-				width: 90%;
-			}
-
-			&:before {
-				content: '';
-				position: absolute;
-				width: 20px;
-				height: 20px;
-				left: -11px;
-				top: 40%;
-				background: #fff;
-				border-radius: 4px;
-				-webkit-border-radius: 4px;
-				-moz-border-radius: 4px;
-				transform: rotate(-44deg);
-				-webkit-transform: rotate(-44deg);
-				-moz-transform: rotate(-44deg);
-				-ms-transform: rotate(-44deg);
-				-o-transform: rotate(-44deg);
-				border-left: 1px solid #c8c8c8;
-				border-top: 1px solid #c8c8c8;
-
-				@include media($smallMobile) {
-					top: -11px;
-					margin-left: -10px;
-					left: 50%;
-					transform: rotate(44deg);
-					-webkit-transform: rotate(44deg);
-					-moz-transform: rotate(44deg);
-					-ms-transform: rotate(44deg);
-					-o-transform: rotate(44deg);
-				}
-			}
 		}
 	}
 }

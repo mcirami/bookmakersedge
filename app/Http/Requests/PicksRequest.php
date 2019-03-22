@@ -22,7 +22,7 @@ class PicksRequest extends FormRequest
      */
     public function rules() {
 
-    	$rules = [];
+    	/*$rules = [];
 	    $requests = $this->request->all();
 
 	    foreach($requests as $key=>$values) {
@@ -33,6 +33,13 @@ class PicksRequest extends FormRequest
 		    }
 	    }
 
-	    return $rules;
+	    return $rules;*/
+
+	    return [
+	    	'sport' => 'required|string|max:255',
+		    'team' => 'required|string|max:255',
+		    'line' => 'required|string|max:255',
+		    'time' => 'required|string|max:255'
+        ];
     }
 }

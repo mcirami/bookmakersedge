@@ -50,6 +50,7 @@ Route::group(['middleware' => 'auth'], function(){
 Route::group(['middleware' => 'provider'], function(){
 	Route::get('submit-picks', 'PickController@index')->name('Make Your Picks');
 	Route::post('submit-picks/save', 'PickController@saveNewPicks');
+	Route::post('submit-picks/update', 'PickController@updatePick');
 	Route::get('grade-picks', 'PickController@grade')->name('Grade Your Picks');
 	Route::post('grade-picks/save', 'PickController@saveGrade');
 });

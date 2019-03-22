@@ -15,11 +15,11 @@
                 </div>
             @endif
 
-            <div class="content_wrap full_width form_wrapper grade_page d-inline-block @php if($distinctDays->isEmpty())  echo 'empty' @endphp">
+            <div class="content_wrap full_width form_wrapper grade_page picks_form d-inline-block @php if($distinctDays->isEmpty())  echo 'empty' @endphp">
 
                 @if(!$distinctDays->isEmpty())
 
-                    <form class="picks_form" action="{{ url('/grade-picks/save') }}" method="post">
+                    <form action="{{ url('/grade-picks/save') }}" method="post">
 
                         {{ csrf_field() }}
 

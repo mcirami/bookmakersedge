@@ -16,8 +16,14 @@ class PickController extends Controller
 	 *
 	 */
 	public function index() {
+		$userID = Auth::user()->getAuthIdentifier();
 
-		return view('member.picks.submit');
+		$today = Carbon::today();
+		$todaysPicks = Pick::where('day', $today)->where('user_id', $userID)->get();
+
+		$now = Carbon::now()->format('h:i A');
+
+		return view('member.picks.submit')->with(['todaysPicks' => $todaysPicks, 'now' => $now]);
 	}
 
 	public function saveNewPicks(PicksRequest $request, PickService $picks) {
@@ -25,8 +31,17 @@ class PickController extends Controller
 		$requests = $request->all();
 		$picks->savePicks( $requests );
 
-		return redirect( '/member-home' )->with( 'success', 'Your Picks Have Been Saved' );
+		//$lastPick = Pick::latest()->first();
 
+		return redirect()->back()->with('success', 'Your Pick Has Been Saved') ;
+
+	}
+
+	public function updatePick(PicksRequest $request, PickService $picks) {
+		$requests = $request->all();
+		$picks->updatePick( $requests );
+
+		return redirect()->back()->with('success', 'Your Pick Has Been Updated') ;
 	}
 
 	public function reports(){

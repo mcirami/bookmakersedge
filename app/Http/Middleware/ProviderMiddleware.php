@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class ProviderMiddleware
 {
@@ -13,8 +14,12 @@ class ProviderMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
-    {
+    public function handle($request, Closure $next) {
+
+	    if ( ! Auth::user()) {
+		    return redirect('/login');
+	    }
+
     	if(! $request->user()->hasRole('provider')) {
     		//return new Response(view('unauthorized')->with('role', 'PROVIDER'));
 		    return redirect('/');

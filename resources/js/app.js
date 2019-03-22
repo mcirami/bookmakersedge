@@ -153,69 +153,7 @@ jQuery(document).ready(function($) {
 
 	/*****************************/
 
-	// Submit picks form
-
-	var pickCount = document.getElementsByClassName('pick_content').length;
-
-	$('#add_pick').click(function(e){
-		e.preventDefault();
-		++pickCount;
-
-		const html =
-			"<div class='form-group my_row d-block d-sm-flex align-content-center pick_content'>" +
-				"<div class='icon_wrap mt-auto mb-4 mb-sm-auto ml-auto mr-0'>" +
-					"<h3>" + pickCount + "</h3>" +
-				"</div>" +
-				"<div class='info_wrap m-auto d-block d-sm-flex justify-content-between'>" +
-					"<div class='column'>" +
-						"<label for='sport" + pickCount + "' class='col-form-label'>Sport</label>" +
-						"<select class='form-control' name='pick_" + pickCount + "[sport]' id='sport" + pickCount + "' required>" +
-							"<option value=''></option>" +
-							"<option value='NFL'>NFL</option>" +
-							"<option value='NCAAF'>NCAAF</option>" +
-							"<option value='NBA'>NBA</option>" +
-							"<option value='NCAAB'>NCAAB</option>" +
-							"<option value='MLB'>MLB</option>" +
-							"<option value='NHL'>NHL</option>" +
-							"<option value='GOLF'>GOLF</option>" +
-						"</select>" +
-					"</div>" +
-					"<div class='column'>" +
-						"<label for='team" + pickCount + "' class='col-form-label'>Team</label>" +
-						"<input id='team" + pickCount + "' type='text' class='form-control' name='pick_" + pickCount + "[team]' value='' required autofocus />" +
-					"</div>" +
-					"<div class='column'>" +
-						"<label for='line" + pickCount + "' class='col-form-label'>Line</label>" +
-						"<input id='line" + pickCount + "' type='text' class='form-control' name='pick_" + pickCount + "[line]' value='' required autofocus />" +
-					"</div>" +
-					"<div class='column'>" +
-						"<label for='time" + pickCount + "' class='col-form-label'>Game Time (EST)</label>" +
-						"<input id='time" + pickCount + "' type='text' class='timepicker form-control' name='pick_" + pickCount +  "[game_time]' required autofocus/>" +
-					"</div>" +
-				"</div>" +
-			"</div>";
-
-		$('.picks_wrap').append(html);
-
-		$("#time" + pickCount).timepicker({
-			'minTime': '7:00am',
-			'maxTime': '12:00am',
-			'step' : '15',
-		});
-
-	});
-
-	$('#remove_pick').click(function(e){
-		e.preventDefault();
-
-		if(pickCount !== 1) {
-			--pickCount;
-			$('.pick_content').last().remove();
-
-		} else {
-			alert("You Must Submit At Least 1 Pick");
-		}
-	});
+	// Initiate Time Picker
 
 	$('.timepicker').timepicker({
 		'minTime': '7:00am',
@@ -225,6 +163,28 @@ jQuery(document).ready(function($) {
 
 	/*****************************/
 
+	// Update picks form
+
+	$('.edit_pick').click(function(e) {
+		e.preventDefault();
+
+		$(this).parent().parent().next('.pick_row').fadeIn(300);
+		$(this).parent().parent().next('.pick_row').find('button').prop('disabled', false);
+		$(this).parent().parent().css('display', 'none');
+		$('.edit_pick').prop("disabled",true);
+
+	});
+
+	$('.cancel').click(function(){
+		$(this).parent().parent().prev('.pick_row').fadeIn(300);
+		$(this).parent().parent().css('display', 'none');
+		$(this).parent().parent().children('.submit_button_wrap').find('button').prop("disabled",true);
+		$('.edit_pick').prop("disabled",false);
+
+	});
+
+
+	/*****************************/
 	// More Info Button
 
 		$('.more_info').click(function(e) {

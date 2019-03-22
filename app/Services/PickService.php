@@ -12,28 +12,32 @@ use App\Pick;
 
 class PickService {
 
-	public function savePicks($requestArray) {
+	public function savePicks($request) {
 		// gets current user saves picks into picks table
 		$userID = Auth::id();
 
-		$picksArray = [];
-		$dataArray = [];
+		$pick = new Pick;
 
-		foreach($requestArray as $key=>$values) {
-			if(is_array($values)) {
-				foreach ( $values as $key2 => $value ) {
+		$pick->user_id = $userID;
+		$pick->sport = $request['sport'];
+		$pick->team = $request['team'];
+		$pick->line = $request['line'];
+		$pick->day = now();
+		$pick->game_time = $request['time'];
 
-					$picksArray['user_id'] = $userID;
-					$picksArray[ $key2 ]   = $value;
-					$picksArray['day']     = now();
+		$pick->save();
+	}
 
-				}
+	public function updatePick($request) {
 
-				array_push($dataArray, $picksArray);
-			}
-		}
+		$pick = Pick::findOrFail($request['pick_id']);
 
-		Pick::insert($dataArray);
+		$pick->sport = $request['sport'];
+		$pick->team = $request['team'];
+		$pick->line = $request['line'];
+		$pick->game_time = $request['time'];
+
+		$pick->save();
 	}
 
 	public function saveGrade($requestArray) {
