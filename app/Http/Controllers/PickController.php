@@ -54,7 +54,7 @@ class PickController extends Controller
 			return redirect('/membership-levels');
 		} else {*/
 			$distinctDays = Pick::distinct()->orderBy( 'day', 'desc' )->whereNotNull( 'grade' )->get( [ 'day' ] );
-			$daysAgo      = Carbon::now()->subDays( 14 );
+			$daysAgo      = Carbon::now()->subDays( 22 );
 			foreach ( $distinctDays as $key => $day ) {
 				if ( strtotime( $day->day ) < strtotime( $daysAgo ) ) {
 					$distinctDays->forget( $key );

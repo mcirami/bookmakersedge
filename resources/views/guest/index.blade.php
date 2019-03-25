@@ -64,7 +64,7 @@
                         @endphp
                         <div class="row mt-2">
                             <div class="col-12">
-                                <h3>Our Last 14 Days:</h3>
+                                <h3>Our Last 21 Days:</h3>
                                 <h4 class="w-100 mb-4">Record: {{$winCount}}-{{$loseCount}}-{{$pushCount}}</h4>
                                 <h4 class="w-100">Winning PCT: {{$winPercent}}%</h4>
                             </div>
@@ -95,7 +95,7 @@
                         <p>My partner and I are retired bookmakers with <span>over 70 years combined experience involving sports gambling.</span></p>
                         <p>We chose to get back in the game by offering this service. We’ve pretty much seen it all!</p>
                         <p>It’s a much different business these days compared to just 10 or 15 years ago.  The Internet has enabled line moves to occur almost simultaneously across the casinos and sports books.  Placing wagers can be a 24/7 proposition.  There are more games (many with teams you haven’t even heard of), more available lines, prop bets, even in-game wagering.  Hell, this year there were over 400 prop bets on the Super Bowl.  400!!  We have witnessed hot/cold streaks, winning/losing seasons, good/bad years.  But one thing hasn’t changed, and that’s what it takes to win. </p>
-                        <p>You were curious, you’ve come this far, so take advantage of our <a href="/register">FREE 7 DAY TRIAL</a> and convince yourself.  In addition to the picks, you will be able to follow a revolving 14 day history, with win percentage, and this is a no-strings attached offer.  If you like what you see, take the next step and sign up for our introductory rate at just $50 per week.  So what are you waiting for?  Sign on and get started now.  <span>Becoming a winner is in your sights.</span> </p>
+                        <p>You were curious, you’ve come this far, so take advantage of our <a href="/register">FREE 7 DAY TRIAL</a> and convince yourself.  In addition to the picks, you will be able to follow a revolving 21 day history, with win percentage, and this is a no-strings attached offer.  If you like what you see, take the next step and sign up for our introductory rate at just $50 for 30 days.  So what are you waiting for?  Sign on and get started now.  <span>Becoming a winner is in your sights.</span> </p>
                         <a class="text-uppercase" href="/register">JOIN NOW TO LEARN MORE ABOUT OUR EXPERT METHOD AND IDEOLOGY</a>
                     </div>
                 </div>

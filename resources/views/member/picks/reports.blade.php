@@ -5,7 +5,7 @@
     <div class="my_container">
         <div class="page_content full_width text-center">
 
-            <h2 class="mb-2 mb-md-4 mb-lg-5">14 Day Report</h2>
+            <h2 class="mb-2 mb-md-4 mb-lg-5">21 Day Report</h2>
 
             <div class="reports text-left">
 

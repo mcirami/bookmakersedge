@@ -142,7 +142,7 @@
                                 <div class="column">
                                     <label for="team" class="col-form-label">{{ __('Team') }} </label>
 
-                                    <input id="team" type="text" class="form-control" name="team" value="{{ old('team') }}" required '>
+                                    <input id="team" type="text" class="form-control" name="team" value="{{ old('team') }}" required autocomplete='off'>
 
                                     @if ($errors->has('team'))
                                         <span class="invalid-feedback">
@@ -154,7 +154,7 @@
                                 <div class="column">
                                     <label for="line" class="col-form-label">{{ __('Line') }}</label>
 
-                                    <input id="line" type="text" class="form-control" name="line" value="{{ old('line') }}" required '>
+                                    <input id="line" type="text" class="form-control" name="line" value="{{ old('line') }}" required autocomplete='off'>
 
                                     @if ($errors->has('line'))
                                         <span class="invalid-feedback">

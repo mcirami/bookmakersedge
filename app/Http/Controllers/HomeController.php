@@ -27,7 +27,7 @@ class HomeController extends Controller
     public function index() {
 
 	    $picks = Pick::whereNotNull('grade')->get();
-	    $daysAgo      = Carbon::now()->subDays( 14 );
+	    $daysAgo      = Carbon::now()->subDays( 22 );
 	    foreach ( $picks as $key => $day ) {
 		    if ( strtotime( $day->day ) < strtotime( $daysAgo ) ) {
 			    $picks->forget( $key );
