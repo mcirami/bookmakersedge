@@ -29,13 +29,13 @@
                                 <span class="amount col-3 text-right my-auto pr-3">FREE</span>
                                 <span class="cta col-2 text-center">CLICK<br>HERE!</span>
                             </a>
-                            <a class="row no-gutters cta_button" href="/register">
+                            <a class="row no-gutters cta_button" href="https://jvax157.pay.clickbank.net/?cbitems=1" target="cb">
                                 <span class="col-6 text-left my-auto">30-Day Access</span>
                                 <span class="col-2 text-center small my-auto">One Time<br>Promo</span>
                                 <span class="amount col-2 text-right my-auto pr-3">$50</span>
                                 <span class="cta col-2 text-center">CLICK<br>HERE!</span>
                             </a>
-                            <a class="row no-gutters cta_button" href="/register">
+                            <a class="row no-gutters cta_button" href="https://jvax157.pay.clickbank.net/?cbitems=1" target="cb">
                                 <span class="col-7 text-left my-auto">30-Day Access</span>
                                 <span class="amount col-3 text-right my-auto pr-3">$100</span>
                                 <span class="cta col-2 text-center">CLICK<br>HERE!</span>

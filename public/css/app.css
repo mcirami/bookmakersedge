@@ -11888,6 +11888,46 @@ p {
   }
 }
 
+.standard.thankyou h2 {
+  font-size: 34px;
+}
+
+@media screen and (max-width: 1023px) {
+  .standard.thankyou h2 {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .standard.thankyou h2 {
+    font-size: 24px;
+  }
+}
+
+.standard.thankyou h3,
+.standard.thankyou h4 {
+  font-size: 24px;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 1023px) {
+  .standard.thankyou h3,
+  .standard.thankyou h4 {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .standard.thankyou h3,
+  .standard.thankyou h4 {
+    font-size: 16px;
+  }
+}
+
+.standard.thankyou p {
+  float: left;
+}
+
 .member .standard h3 {
   float: left;
   display: block;
@@ -11947,56 +11987,6 @@ p {
 @media screen and (max-width: 768px) {
   .login_box .btn-link {
     font-size: 14px;
-  }
-}
-
-.um-um_password_id.um {
-  margin-top: 60px;
-  margin-bottom: 60px !important;
-  background: #f1f1f1;
-  padding: 20px;
-  box-shadow: -2px 2px 3px 1px rgba(0, 0, 0, 0.14);
-  border: 1px solid #c8c8c8;
-  border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-}
-
-.um-um_password_id.um input[type=submit] {
-  float: left;
-  font-family: "robotoregular", sans-serif;
-  font-weight: 300;
-  font-size: 16px;
-  padding: 12px 24px !important;
-  border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  background: #f20f2b !important;
-  color: #fff;
-  min-width: unset !important;
-}
-
-.um-um_password_id.um input[type=submit]:hover {
-  background: #c30b21 !important;
-}
-
-@media screen and (max-width: 1023px) {
-  .um-um_password_id.um input[type=submit] {
-    padding: 6px 12px;
-    font-size: 14px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .um-um_password_id.um input[type=submit] {
-    padding: 7px 10px;
-    font-size: 12px;
-  }
-}
-
-@media screen and (max-width: 550px) {
-  .um-um_password_id.um input[type=submit] {
-    width: 100% !important;
   }
 }
 

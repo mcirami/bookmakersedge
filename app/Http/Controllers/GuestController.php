@@ -29,4 +29,12 @@ class GuestController extends Controller
 	public function method() {
 		return view('guest.method');
 	}
+
+	/**
+	 * Show the Our Method page.
+	 *
+	 */
+	public function thankYou() {
+		return view('guest.thank-you');
+	}
 }

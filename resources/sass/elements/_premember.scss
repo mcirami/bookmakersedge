@@ -31,52 +31,6 @@
 
 }
 
-.um-um_password_id.um {
-    margin-top: 60px;
-    margin-bottom: 60px !important;
-    background: $lightGray;
-    padding: 20px;
-    -webkit-box-shadow: -2px 2px 3px 1px rgba(0,0,0,.14);
-    -moz-box-shadow: -2px 2px 3px 1px rgba(0,0,0,.14);
-    box-shadow: -2px 2px 3px 1px rgba(0,0,0,.14);
-    border: 1px solid $borderGray;
-    border-radius: 4px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-
-    input[type="submit"] {
-        float: left;
-        @include robotoreg;
-        font-size: 16px;
-        padding: 12px 24px !important;
-        border-radius: 4px;
-        -webkit-border-radius: 4px;
-        -moz-border-radius: 4px;
-        background: $red !important;
-        color: $white;
-        min-width: unset !important;
-
-        &:hover {
-            background: #c30b21 !important;
-        }
-
-        @include media($tablet){
-            padding: 6px 12px;
-            font-size: 14px;
-        }
-
-        @include media($mobile){
-            padding: 7px 10px;
-            font-size: 12px;
-        }
-
-        @include media($smallMobile){
-            width: 100% !important;
-        }
-    }
-}
-
-
 .confirmation_page {
 	margin: 100px 0;
 	background: $lightGray;
