@@ -38,7 +38,7 @@
 			}
 
 			@include media($smallMobile){
-				font-size: 34px;
+				font-size: 30px;
 			}
 
 			&.sub_title {
@@ -84,6 +84,10 @@
 
 			@include media($tablet) {
 				font-size: 26px;
+			}
+
+			@include media($smallMobile) {
+				font-size: 22px;
 			}
 		}
 

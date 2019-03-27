@@ -10185,6 +10185,7 @@ p {
     -webkit-backface-visibility: hidden;
     -webkit-perspective: 1000;
     overflow-y: scroll;
+    overflow-x: hidden;
   }
 }
 
@@ -11442,7 +11443,7 @@ p {
 
 @media screen and (max-width: 550px) {
   .home_section .hero h2 {
-    font-size: 34px;
+    font-size: 30px;
   }
 }
 
@@ -11500,6 +11501,12 @@ p {
 @media screen and (max-width: 1023px) {
   .home_section .hero h4 {
     font-size: 26px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .home_section .hero h4 {
+    font-size: 22px;
   }
 }
 

@@ -185,6 +185,7 @@ jQuery(document).ready(function($) {
 
 
 	/*****************************/
+
 	// More Info Button
 
 		$('.more_info').click(function(e) {
@@ -193,6 +194,12 @@ jQuery(document).ready(function($) {
 		});
 
 	/*****************************/
+
+
+	$(".delete").on("submit", function(){
+		return confirm("Are you sure?");
+	});
+
 
 	/* FUNCTIONS */
 
