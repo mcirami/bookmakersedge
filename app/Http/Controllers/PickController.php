@@ -31,8 +31,6 @@ class PickController extends Controller
 		$requests = $request->all();
 		$picks->savePicks( $requests );
 
-		//$lastPick = Pick::latest()->first();
-
 		return redirect()->back()->with('success', 'Your Pick Has Been Saved') ;
 
 	}

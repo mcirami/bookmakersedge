@@ -36247,9 +36247,6 @@ jQuery(document).ready(function ($) {
   });
   /*****************************/
 
-  $(".delete").on("submit", function () {
-    return confirm("Are you sure?");
-  });
   /* FUNCTIONS */
 
   function mobileSubMenu() {

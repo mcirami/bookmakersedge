@@ -11562,13 +11562,19 @@ p {
   padding: 15px;
 }
 
+.home_section .hero .button_content p {
+  line-height: 1;
+  text-align: left;
+  font-size: 11px;
+}
+
 .home_section .hero .cta_button {
   font-family: "foliocondensedbq", sans-serif;
   font-weight: 400;
   color: #123b50;
   font-size: 26px;
   text-transform: uppercase;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   padding-left: 15px;
   background: #ddb72e;
   border-radius: 6px;
