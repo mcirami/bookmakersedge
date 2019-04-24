@@ -10,15 +10,14 @@ use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
-    use Notifiable, Billable;
-	use HasRoles;
+    use Notifiable, Billable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-	protected $fillable = [ 'first_name', 'last_name', 'email', 'username', 'password' ];
+	protected $fillable = [ 'first_name', 'last_name', 'email', 'username', 'password', 'clickbank_receipt' ];
 
 	protected $guard_name = 'web';
 

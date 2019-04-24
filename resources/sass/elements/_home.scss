@@ -6,9 +6,9 @@
 		@include span-columns(12);
 		background: url('../images/home-hero2.jpg') no-repeat;
 		background-size: cover;
+		background-position: left;
 		text-align: center;
 		padding: 40px 0;
-		background-position: left;
 
 		@include media($mobile) {
 			padding-bottom: 100px;

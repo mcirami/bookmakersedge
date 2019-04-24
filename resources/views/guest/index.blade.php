@@ -1,7 +1,6 @@
 @extends('guest.layouts.header')
 
 @section('content')
-
     <div class="home_section page_content_home">
         <div class="hero full_width">
             <div class="my_container">
@@ -30,41 +29,44 @@
                                 <span class="cta col-2 text-center">CLICK<br>HERE!</span>
                             </a>
                             <p>Free for 7 days then you will be asked to upgrade to keep access.</p>
-                            <a class="row no-gutters cta_button" href="https://jvax157.pay.clickbank.net/?cbitems=1" target="cb">
+                            <a class="row no-gutters cta_button" href="http://1.jvax157.pay.clickbank.net/?cbskin=24677" target="cb">
                                 <span class="col-6 text-left my-auto">30-Day Access</span>
                                 <span class="col-2 text-center small my-auto">One Time<br>Promo</span>
                                 <span class="amount col-2 text-right my-auto pr-3">$50</span>
                                 <span class="cta col-2 text-center">CLICK<br>HERE!</span>
                             </a>
                             <p>Your initial charge will be $50.00. You will then be charged $100.00 monthly.</p>
-                            <a class="row no-gutters cta_button" href="https://jvax157.pay.clickbank.net/?cbitems=1" target="cb">
+                            {{--<a class="row no-gutters cta_button" href="#" target="cb">
                                 <span class="col-7 text-left my-auto">30-Day Access</span>
                                 <span class="amount col-3 text-right my-auto pr-3">$100</span>
                                 <span class="cta col-2 text-center">CLICK<br>HERE!</span>
                             </a>
-                            <p>Your initial charge will be $100.00. You will then be charged $100.00 monthly.</p>
+                            <p>Your initial charge will be $100.00. You will then be charged $100.00 monthly.</p>--}}
                             <img class="mt-5" src="<?php echo asset('images/payment-logos.png'); ?>" alt="">
                         </div>
                         @php
                             $winCount = 0;
                             $loseCount = 0;
                             $pushCount = 0;
+                            $winPercent = 0;
                         @endphp
-                        @foreach ($picks as $pick)
+                        @if(!$picks->isEmpty())
+                            @foreach ($picks as $pick)
+                                @php
+                                    if($pick->grade == "w") {
+                                        $winCount++;
+                                    } elseif($pick->grade == "l") {
+                                        $loseCount++;
+                                    } elseif($pick->grade == "p") {
+                                        $pushCount++;
+                                    }
+                                @endphp
+                            @endforeach
                             @php
-                                if($pick->grade == "w") {
-                                    $winCount++;
-                                } elseif($pick->grade == "l") {
-                                    $loseCount++;
-                                } elseif($pick->grade == "p") {
-                                    $pushCount++;
-                                }
+                                $totalGames = $winCount + $loseCount;
+                                $winPercent = round($winCount / $totalGames, 3) * 100
                             @endphp
-                        @endforeach
-                        @php
-                            $totalGames = $winCount + $loseCount;
-                            $winPercent = round($winCount / $totalGames, 3) * 100
-                        @endphp
+                        @endif
                         <div class="row mt-2">
                             <div class="col-12">
                                 <h3>Our Last 21 Days:</h3>

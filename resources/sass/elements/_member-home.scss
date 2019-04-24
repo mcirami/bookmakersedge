@@ -59,4 +59,33 @@
 			}
 		}
 	}
+
+	&.inactive {
+		padding-bottom: 20%;
+
+		h2 {
+			color: $white;
+			padding-bottom: 5%;
+		}
+
+		h3 {
+			@include foliocondensedbq;
+			text-shadow: 1px 4px 2px black;
+			color: $yellow;
+			font-size: 45px;
+
+			@include media($mobile) {
+				font-size: 34px;
+			}
+		}
+
+		.button {
+			@include foliocondensedbq;
+			font-size: 34px;
+
+			@include media($mobile) {
+				font-size: 28px;
+			};
+		}
+	}
 }

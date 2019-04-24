@@ -109,6 +109,14 @@
                 margin-bottom: 0;
             }
 
+			a {
+				color: $red;
+
+				&:hover {
+					color: $darkRed;
+				}
+			}
+
             .content_wrap {
                 padding-bottom: 39px;
 
@@ -119,7 +127,12 @@
                 &.noname {
                     padding-bottom: 9px;
                 }
-            }
+
+				p {
+					color: $black;
+				}
+
+			}
         }
 		
 		.content_wrap {

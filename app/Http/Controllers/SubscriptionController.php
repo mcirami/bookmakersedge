@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RegistrationRequest;
 use App\Http\Requests\UpdateInfoRequest;
 use App\Services\UserService;
-use App\Services\BraintreeService;
 use Illuminate\Http\Request;
 use Laravel\Cashier\Billable;
 
@@ -14,39 +13,18 @@ class SubscriptionController extends Controller
 
 	use Billable;
 
-	public function registerNewUser(RegistrationRequest $request, UserService $user) {
+	public function registerNewFreeUser(RegistrationRequest $request, UserService $user) {
 
-		$user->createUser($request);
-
-		return redirect( '/member-home' );
-	}
-
-	public function subscribe(Request $request, BraintreeService $braintreeSubscription) {
+		$user->createFreeUser($request);
 
 		return redirect( '/member-home' );
 	}
 
+	public function subscribeClickBankUser(Request $request, UserService $createClickBankUser) {
 
-	public function show($id) {
-         $subscriptions = Subscription::findOrFail($id);
-    	 return view('subscription.show', compact('subscriptions'));
+		$createClickBankUser->createClickBankUser($request);
 
-    }
-
-    public function upgradeUserSubscription(Request $request, BraintreeService $braintreeSubscription) {
-	    $subscriptionName = $request->user()->subscriptions[0]['name'];
-		$planID = $request->plan;
-	    $braintreeSubscription->upgradeBraintreeSubscription($request, $subscriptionName, $planID);
-	    return redirect('/membership-account')->with('success', 'Your Membership Level Has Been Changed' );
-
-    }
-
-	public function cancelUserSubscription(Request $request, BraintreeService $braintreeSubscription) {
-
-		$subscriptionName = $request->user()->subscriptions[0]['name'];
-
-		$braintreeSubscription->cancelBraintreeSubscription($request, $subscriptionName);
-		return redirect('/membership-account')->with('success', 'Your Membership Has Been Cancelled' );
+		return view('guest.ipn');
 	}
 
 	public function updateUserInfo(UpdateInfoRequest $request, UserService $user) {

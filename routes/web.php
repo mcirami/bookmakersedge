@@ -14,6 +14,7 @@
 
 Auth::routes();
 
+
 Route::group(['middleware' => 'web'], function() {
 	Route::get('logout', 'Auth\LoginController@logout');
 	Route::get('privacy-policy', 'GuestController@privacy')->name('Privacy Policy');
@@ -25,11 +26,14 @@ Route::group(['middleware' => 'guest'], function() {
 	Route::get('register', 'UserController@register')->name('Register Free Now');
 	Route::get('our-method', 'GuestController@method')->name('Our Method');
 	Route::get('thank-you', 'GuestController@thankYou')->name('Thank You');
-	Route::post('free-register', 'SubscriptionController@registerNewUser');
+	Route::post('free-register', 'SubscriptionController@registerNewFreeUser');
+	Route::any('ipn', 'SubscriptionController@subscribeClickBankUser');
 });
 
 Route::group(['middleware' => 'auth'], function(){
 	Route::get('member-home', 'HomeController@member')->name('Home Page');
+	Route::get('inactive', 'HomeController@inactive');
+	Route::get('expired', 'HomeController@expiredTrial');
 	Route::get('membership-account', 'UserController@index')->name('Account');
 	Route::get('membership-account/update', 'UserController@update')->name('Update Account Info');
 	Route::post('account/update', 'SubscriptionController@updateUserInfo');
@@ -37,15 +41,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::post('account/change-password', 'SubscriptionController@changeUserPassword');
 	Route::get('reports', 'PickController@reports')->name('Reports');
 	Route::get('our-method-member', 'UserController@method')->name('Our Method');
-
-	Route::get('membership-account/cancel', 'UserController@cancel')->name('Cancel My Membership');
-	Route::get('membership-account/upgrade', 'UserController@upgrade')->name('Upgrade My Membership');
-	Route::post('subscription/upgrade', 'SubscriptionController@upgradeUserSubscription');
-	Route::post('subscription/cancel', 'SubscriptionController@cancelUserSubscription');
-	Route::get('membership-levels', 'PlanController@index')->name('Membership Levels');
-	Route::get('membership-level/{plan}', 'PlanController@show')->name('Join Now');
 	Route::post('subscribe', 'SubscriptionController@subscribe');
-	Route::get('braintree/token', 'BraintreeTokenController@token');
 });
 
 Route::group(['middleware' => 'provider'], function(){

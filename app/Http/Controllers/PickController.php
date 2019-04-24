@@ -44,13 +44,13 @@ class PickController extends Controller
 
 	public function reports(){
 
-		//$user = Auth::user();
+		$user = Auth::user();
 
-		/*$userRegisterDate = $user['created_at'];
+		//$userRegisterDate = $user['created_at'];
 
-		if($user->hasRole('subscriber') && $user['free_trial'] == "1" && strtotime($userRegisterDate) < strtotime('-3 days')) {
-			return redirect('/membership-levels');
-		} else {*/
+		//if($user->hasRole('subscriber') && $user['free_trial'] == "1" && strtotime($userRegisterDate) < strtotime('-7 days')) {
+		//	return redirect('https://jvax157.pay.clickbank.net/?cbitems=1');
+		//} else {
 			$distinctDays = Pick::distinct()->orderBy( 'day', 'desc' )->whereNotNull( 'grade' )->get( [ 'day' ] );
 			$daysAgo      = Carbon::now()->subDays( 22 );
 			foreach ( $distinctDays as $key => $day ) {

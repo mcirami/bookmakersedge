@@ -16,7 +16,7 @@
                     $dayCount = 0;
                 @endphp
 
-                @if (!$picks->isEmpty())
+                @if (!$distinctDays->isEmpty())
 
                     <div class="accordion my_row" id="reportAccordion">
 
@@ -115,7 +115,7 @@
                         <h3>Winning PCT: @php echo $winPercent @endphp%</h3>
                     </div>
                 @else
-                    <h3 class="text-center">There is nothing to report</h3>
+                    <h3 class="text-center">There is nothing to report in the last 21 days</h3>
                 @endif
             </div><!-- reports -->
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\User;
 
 class GuestController extends Controller
 {
@@ -35,6 +35,19 @@ class GuestController extends Controller
 	 *
 	 */
 	public function thankYou() {
-		return view('guest.thank-you');
+
+		$name = (isset($_GET['cname']) && $_GET['cname'] != "") ? $_GET['cname'] : "";
+
+		$email = (isset($_GET['cemail']) && $_GET['cemail'] != "") ? $_GET['cemail'] : "";
+
+		$user = User::where('email', $email)->first();
+
+		if($user['free_trial'] == 1) {
+			$newAccount = false;
+		} else {
+			$newAccount = true;
+		}
+
+		return view('guest.thank-you')->with(['name' => $name, 'email' => $email, 'newAccount' => $newAccount]);
 	}
 }

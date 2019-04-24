@@ -4,7 +4,6 @@
 
     <div class="my_container">
         <div class="member_home page_content full_width">
-
             @php
                 $firstName = $user->first_name ;
                 $username = $user->username;
