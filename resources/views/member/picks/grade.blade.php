@@ -65,7 +65,7 @@
                                                         <option value=NULL></option>
                                                         <option value="w">Win</option>
                                                         <option value="l">Lose</option>
-                                                        <option value="p">Push</option>
+                                                        <option value="p/c">Push/Cancelled</option>
                                                     </select>
                                                 </div>
                                             </div>

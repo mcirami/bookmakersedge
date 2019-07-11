@@ -3,89 +3,103 @@
 @section('content')
     <div class="home_section page_content_home">
         <div class="hero full_width">
-            <div class="my_container">
-                <div class="row">
-                    <div class="col-12 col-md-7">
-                        <h2 class="text-uppercase mb-4">THERE IS NO SUCH THING AS A LOCK!</h2>
-                        <h2 class="mb-4 sub_title">Don’t buy the bullshit, winning is about longterm success!</h2>
-                        <div style="width:50%;height:0;padding-bottom:25%;position:relative; margin: 0 auto;"><iframe src="https://giphy.com/embed/mQvZiYEB2elvq" width="100%" height="100%" style="position:absolute; left:0; margin: 0 auto;" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p></p>
-                        <h3><a class="text_link" href="/register">Signup NOW</a> and Get 7 Free Days</h3>
-                        <div class="d-flex justify-content-center mb-5">
-                            <h4 class="mr-3">Winner</h4>
-                            <img class="mr-3 checkmark my-auto" src="<?php echo asset('images/check.png'); ?>" alt="">
-                            <h4 class="mr-3">Winner</h4>
-                            <img class="mr-3 checkmark my-auto" src="<?php echo asset('images/check.png'); ?>" alt="">
-                            <h4>Chicken Dinner</h4>
-                        </div>
-                        <div class="button_wrap">
-                            <a class="button yellow" href="/register">Join Now For Free!</a>
-                        </div>
+            <div id="carousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="slide one"></div>
                     </div>
-                    <div class="col-12 col-md-5 mt-5 mt-md-0">
-                        <div class="button_content">
-                            <a class="row no-gutters cta_button" href="/register">
-                                <span class="col-7 text-left my-auto">7-Day Access</span>
-                                <span class="amount col-3 text-right my-auto pr-3">FREE</span>
-                                <span class="cta col-2 text-center">CLICK<br>HERE!</span>
-                            </a>
-                            <p>Free for 7 days then you will be asked to upgrade to keep access.</p>
-                            <a class="row no-gutters cta_button" href="http://1.jvax157.pay.clickbank.net/?cbskin=24677" target="cb">
-                                <span class="col-6 text-left my-auto">30-Day Access</span>
-                                <span class="col-2 text-center small my-auto">One Time<br>Promo</span>
-                                <span class="amount col-2 text-right my-auto pr-3">$50</span>
-                                <span class="cta col-2 text-center">CLICK<br>HERE!</span>
-                            </a>
-                            <p>Your initial charge will be $50.00. You will then be charged $100.00 monthly.</p>
-                            {{--<a class="row no-gutters cta_button" href="#" target="cb">
-                                <span class="col-7 text-left my-auto">30-Day Access</span>
-                                <span class="amount col-3 text-right my-auto pr-3">$100</span>
-                                <span class="cta col-2 text-center">CLICK<br>HERE!</span>
-                            </a>
-                            <p>Your initial charge will be $100.00. You will then be charged $100.00 monthly.</p>--}}
-                            <img class="mt-5" src="<?php echo asset('images/payment-logos.png'); ?>" alt="">
+                    <div class="carousel-item">
+                        <div class="slide two"></div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="slide three"></div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="slide four"></div>
+                    </div>
+                </div>
+            </div><!-- carousel -->
+            <div class="hero_text">
+                <div class="my_container">
+                    <div class="row">
+                        <div class="col-12 col-md-7">
+                            <h2 class="text-uppercase mb-4">THERE IS NO SUCH THING AS A LOCK!</h2>
+                            <h2 class="mb-4 sub_title">Don’t buy the bullshit, winning is about longterm success!</h2>
+                            <div style="width:50%;height:0;padding-bottom:25%;position:relative; margin: 0 auto;"><iframe src="https://giphy.com/embed/mQvZiYEB2elvq" width="100%" height="100%" style="position:absolute; left:0; margin: 0 auto;" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p></p>
+                            <h3><a class="text_link" href="/register">Signup NOW</a> and Get 7 Free Days</h3>
+                            <div class="d-flex justify-content-center mb-5">
+                                <h4 class="mr-3">Winner</h4>
+                                <img class="mr-3 checkmark my-auto" src="<?php echo asset('images/check.png'); ?>" alt="">
+                                <h4 class="mr-3">Winner</h4>
+                                <img class="mr-3 checkmark my-auto" src="<?php echo asset('images/check.png'); ?>" alt="">
+                                <h4>Chicken Dinner</h4>
+                            </div>
+                            <div class="button_wrap">
+                                <a class="button yellow" href="/register">Join Now For Free!</a>
+                            </div>
                         </div>
-                        @php
-                            $winCount = 0;
-                            $loseCount = 0;
-                            $pushCount = 0;
-                            $winPercent = 0;
-                        @endphp
-                        @if(!$picks->isEmpty())
-                            @foreach ($picks as $pick)
-                                @php
-                                    if($pick->grade == "w") {
-                                        $winCount++;
-                                    } elseif($pick->grade == "l") {
-                                        $loseCount++;
-                                    } elseif($pick->grade == "p") {
-                                        $pushCount++;
-                                    }
-                                @endphp
-                            @endforeach
+                        <div class="col-12 col-md-5 mt-5 mt-md-0">
+                            <div class="button_content">
+                                <a class="row no-gutters cta_button" href="/register">
+                                    <span class="col-7 text-left my-auto">7-Day Access</span>
+                                    <span class="amount col-3 text-right my-auto pr-3">FREE</span>
+                                    <span class="cta col-2 text-center">CLICK<br>HERE!</span>
+                                </a>
+                                <p>Free for 7 days then you will be asked to upgrade to keep access.</p>
+                                <a class="row no-gutters cta_button" href="http://1.jvax157.pay.clickbank.net/?cbskin=24677" target="cb">
+                                    <span class="col-6 text-left my-auto">30-Day Access</span>
+                                    <span class="col-2 text-center small my-auto">One Time<br>Promo</span>
+                                    <span class="amount col-2 text-right my-auto pr-3">$50</span>
+                                    <span class="cta col-2 text-center">CLICK<br>HERE!</span>
+                                </a>
+                                <p>Your initial charge will be $50.00. You will then be charged $100.00 monthly.</p>
+                                {{--<a class="row no-gutters cta_button" href="#" target="cb">
+                                    <span class="col-7 text-left my-auto">30-Day Access</span>
+                                    <span class="amount col-3 text-right my-auto pr-3">$100</span>
+                                    <span class="cta col-2 text-center">CLICK<br>HERE!</span>
+                                </a>
+                                <p>Your initial charge will be $100.00. You will then be charged $100.00 monthly.</p>--}}
+                                <img class="mt-5" src="<?php echo asset('images/payment-logos.png'); ?>" alt="">
+                            </div>
                             @php
-                                $totalGames = $winCount + $loseCount;
-                                $winPercent = round($winCount / $totalGames, 3) * 100
+                                $winCount = 0;
+                                $loseCount = 0;
+                                $pushCount = 0;
+                                $winPercent = 0;
                             @endphp
-                        @endif
-                        <div class="row mt-2">
-                            <div class="col-12">
-                                <h3>Our Last 21 Days:</h3>
-                                <h4 class="w-100 mb-4">Record: {{$winCount}}-{{$loseCount}}-{{$pushCount}}</h4>
-                                <h4 class="w-100">Winning PCT: {{$winPercent}}%</h4>
+                            @if(!$picks->isEmpty())
+                                @foreach ($picks as $pick)
+                                    @php
+                                        if($pick->grade == "w") {
+                                            $winCount++;
+                                        } elseif($pick->grade == "l") {
+                                            $loseCount++;
+                                        } elseif($pick->grade == "p/c") {
+                                            $pushCount++;
+                                        }
+                                    @endphp
+                                @endforeach
+                                @php
+                                    $totalGames = $winCount + $loseCount;
+                                    $winPercent = round($winCount / $totalGames, 3) * 100
+                                @endphp
+                            @endif
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <h3>Our Last 21 Days:</h3>
+                                    <h4 class="w-100 mb-4">Record: {{$winCount}}-{{$loseCount}}-{{$pushCount}}</h4>
+                                    <h4 class="w-100">Winning PCT: {{$winPercent}}%</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <div class="down_arrow">
-                            <p>MORE INFO</p>
-                            <a class="more_info" href="#method">
-                                <img class="w-auto mx-auto" src="<?php echo asset('images/down-arrow.png'); ?>" alt="">
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            </div><!-- hero_text -->
+            <div class="down_arrow">
+                <p>MORE INFO</p>
+                <a class="more_info" href="#method">
+                    <img class="w-auto mx-auto" src="<?php echo asset('images/down-arrow.png'); ?>" alt="">
+                </a>
             </div>
         </div><!-- hero -->
         <div class="full_width content_wrap" id="method">

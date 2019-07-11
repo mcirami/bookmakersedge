@@ -45,6 +45,9 @@
                                                 <div class="col-4 col-sm-3">
                                                     <p>{{$pick->game_time}} EST</p>
                                                 </div>
+                                                <div class="col-12">
+                                                    <p>{{$pick->comment}}</p>
+                                                </div>
                                             </div>
 
                                         </div><!-- pick_row -->

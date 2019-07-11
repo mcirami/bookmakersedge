@@ -168,9 +168,9 @@ jQuery(document).ready(function($) {
 	$('.edit_pick').click(function(e) {
 		e.preventDefault();
 
-		$(this).parent().parent().next('.pick_row').fadeIn(300);
-		$(this).parent().parent().next('.pick_row').find('button').prop('disabled', false);
-		$(this).parent().parent().css('display', 'none');
+		$(this).closest('.pick_row').next('.pick_row').fadeIn(300);
+		$(this).closest('.pick_row').next('.pick_row').find('button').prop('disabled', false);
+		$(this).closest('.pick_row').css('display', 'none');
 		$('.edit_pick').prop("disabled",true);
 
 	});

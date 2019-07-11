@@ -23,39 +23,56 @@
 
                     @foreach($todaysPicks as $pick)
                         @php $count++ @endphp
-                        <form class="col-12" action="{{ url('/submit-picks/update') }}" method="post">
+                        <form class="col-12" action="/submit-picks/{{$pick['id']}}/update" method="post">
 
                             {{ csrf_field() }}
+                            {{ method_field('PATCH') }}
                             <div class="row pick_row current_picks">
                                 <div class="col-12 mb-3">
                                     <h4 class="font-weight-bold">Submitted at: {{$pick['updated_at']->format('h:i')}} EST </h4>
                                 </div>
-                                <div class="col-12 col-sm-2">
-                                    <p>{{$pick['sport']}}</p>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-9">
+                                            <div class="row">
+                                                <div class="col-12 col-sm-2">
+                                                    <p>{{$pick['sport']}}</p>
+                                                </div>
+                                                <div class="col-12 col-sm-4">
+                                                    <p>{{$pick['team']}}</p>
+                                                </div>
+                                                <div class="col-12 col-sm-2">
+                                                    <p>{{$pick['line']}}</p>
+                                                </div>
+                                                <div class="col-12 col-sm-4">
+                                                    <p>{{$pick['game_time']}} EST</p>
+                                                </div>
+                                            </div>
+                                            @if($pick['comment'])
+                                                <div class="row">
+                                                    <div class="col-12 display_comment pt-3">
+                                                        <p>{{$pick['comment']}}</p>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="col-12 col-sm-3 d-flex align-content-center">
+                                            @if(strtotime($now) < strtotime($pick['game_time']))
+                                                <button name="picks_edit" class="button black w-100 d-block edit_pick m-auto">Edit</button>
+                                            @else
+                                                <p class="m-auto">Game Started</p>
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-12 col-sm-3">
-                                    <p>{{$pick['team']}}</p>
-                                </div>
-                                <div class="col-12 col-sm-2">
-                                    <p>{{$pick['line']}}</p>
-                                </div>
-                                <div class="col-12 col-sm-3">
-                                    <p>{{$pick['game_time']}} EST</p>
-                                </div>
-                                <div class="col-12 col-sm-2">
-                                    @if(strtotime($now) < strtotime($pick['game_time']))
-                                        <button name="picks_edit" class="button black w-100 d-block edit_pick">Edit</button>
-                                    @else
-                                       <p>Game Started</p>
-                                    @endif
-                                </div>
+
                             </div>
                             <div class="row pick_row text-left" style="display: none;">
                                 <input type="hidden" name="pick_id" value="{{$pick['id']}}">
                                 <div class="col-12">
                                     <img class="cancel" src="<?php echo asset('images/close-button.png'); ?>" alt="">
                                 </div>
-                                <div class="col-12 col-md-2">
+                                <div class="col-12 col-md-3">
                                     <label for="sport{{$count}}" class="col-form-label">{{ __('Sport') }}</label>
 
                                     <select class="form-control" name="sport" id="sport{{$count}}" required>
@@ -71,7 +88,7 @@
 
                                 </div>
 
-                                <div class="col-12 col-md-3">
+                                <div class="col-12 col-md-4">
                                     <label for="team{{$count}}" class="col-form-label">{{ __('Team') }} </label>
 
                                     <input id="team{{$count}}" type="text" class="form-control" name="team" value="{{$pick['team']}}" required '>
@@ -88,14 +105,18 @@
                                     <label for="time{{$count}}" class="col-form-label">{{ __('Game Time') }} (EST)</label>
                                     <input id="time{{$count}}" type="text" class="timepicker form-control" name="time" value="{{$pick['game_time']}}"/>
                                 </div>
-                                <div class="col-12 col-md-2 d-flex submit_button_wrap">
-                                    <div class="align-self-end w-100">
+                                <div class="col-12">
+                                    <label for="comment{{$count}}" class="col-form-label w-100 text-left">{{ __('Comment') }}</label>
+                                    <textarea class="w-100 form-control" name="comment" id="comment{{$count}}" rows="3">{{$pick['comment']}}</textarea>
+                                </div>
+                                <div class="col-12 submit_button_wrap mt-4">
+                                    <div class="w-100">
                                         <div class="text-center">
                                             <button name="picks_update" class="button red d-block w-100" disabled>Submit</button>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div><!-- pick_row -->
                         </form>
 
                     @endforeach
@@ -115,7 +136,7 @@
 
                     <div class="picks_wrap full_width">
 
-                        <div class="form-group my_row d-block d-sm-flex align-content-center pick_content">
+                        <div class="form-group my_row d-block d-sm-flex align-content-center pick_content mb-0">
 
                             <div class="info_wrap pick_submit m-auto d-block d-md-flex justify-content-between">
                                 <div class="column">
@@ -164,7 +185,13 @@
                                 </div>
                                 <div class="column">
                                     <label for="time" class="col-form-label">{{ __('Game Time') }} (EST)</label>
-                                    <input id="time" type="text" class="timepicker form-control" name="time" value="{{ old('time') }}"/>
+                                    <input id="time" type="text" class="timepicker form-control" name="time" value="
+                                        @if ($lastPick['game_time'] != null)
+                                            {{$lastPick['game_time']}}
+                                        @else
+                                            {{ old('time') }}
+                                        @endif
+                                            "/>
 
                                     @if ($errors->has('time'))
                                         <span class="invalid-feedback">
@@ -172,8 +199,17 @@
                                         </span>
                                     @endif
                                 </div>
-                            </div>
+                            </div><!-- picks_wrap -->
+                        </div><!-- pick_content -->
+                        <div class="forum-group my_row px-4 pb-4 text_area">
+                            <label for="comment" class="col-form-label w-100 text-left">{{ __('Comment') }}</label>
+                            <textarea class="w-100 form-control" name="comment" id="comment" rows="3"></textarea>
                         </div>
+                        @if ($errors->has('comment'))
+                            <span class="invalid-feedback">
+                                <strong>{{ $errors->first('comment') }}</strong>
+                            </span>
+                        @endif
                     </div><!-- picks_wrap -->
 
                     <div class="form-group my_row mt-4">

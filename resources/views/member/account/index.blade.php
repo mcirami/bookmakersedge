@@ -21,7 +21,7 @@
                 </div>
             </div>
 
-            <div class="column membership">
+            {{--<div class="column membership">
 
                 <h3>My Membership</h3>
                 <div class="content_wrap full_width ">
@@ -30,7 +30,7 @@
                     <p>Send us an email here: <a href="mailto:support@bookmakersedge.com">support@bookmakersedge.com</a></p>
                 </div><!-- cotent_wrap -->
 
-            </div>
+            </div>--}}
         </div>
     </div>
 

@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pick extends Model
 {
-	protected $fillable = ['sport', 'team', 'line', 'grade', 'game_time'];
+	protected $guarded = [];
+
+	protected $fillable = ['sport', 'team', 'line', 'grade', 'game_time', 'comment'];
 
 	public function users(){
 		return $this->belongsTo(User::class);

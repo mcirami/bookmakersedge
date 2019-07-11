@@ -4,59 +4,143 @@
 	
 	.hero {
 		@include span-columns(12);
-		background: url('../images/home-hero2.jpg') no-repeat;
-		background-size: cover;
-		background-position: left;
 		text-align: center;
-		padding: 40px 0;
 
-		@include media($mobile) {
-			padding-bottom: 100px;
+		.carousel-item {
+
+			/*&:before {
+				content: '';
+				background: rgba(0, 0, 0, .7);
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 1;
+			}*/
+
+			.slide {
+				//padding: 14% 0;
+				height: 540px;
+
+				@include media($mobile) {
+					height: 1070px;
+				}
+
+				@include media($smallMobile) {
+					height: 1050px;
+				}
+
+				&:before {
+					content: '';
+					background: rgba(0, 0, 0, .7);
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+				}
+
+				&.one {
+					background: url('/images/hero-slide1.jpg') no-repeat;
+					background-size: cover;
+					background-position: left;
+				}
+
+				&.two {
+					background: url('/images/hero-slide2.jpg') no-repeat;
+					background-size: cover;
+					background-position: left;
+				}
+
+				&.three {
+					background: url('/images/hero-slide3.jpg') no-repeat;
+					background-size: cover;
+					background-position: left;
+
+					@include media($mobile) {
+						background-position: top;
+					}
+				}
+
+				&.four {
+					background: url('/images/hero-slide4.jpg') no-repeat;
+					background-size: cover;
+					background-position: bottom;
+
+					@include media($mobile) {
+						background-position: top;
+					}
+				}
+			}
+
 		}
 
-		&:before {
-			content: '';
-			background: rgba(0, 0, 0, .7);
+		.hero_text {
 			position: absolute;
 			top: 0;
 			left: 0;
 			width: 100%;
-			height: 100%;
+			padding-top: 30px;
+
+			@include media($mobile) {
+				padding-top: 10px;
+			}
 		}
 
 		h2 {
 			@include calvertbold;
-			font-size: 36px;
+			font-size: 34px;
 			text-shadow: 1px 4px 2px rgba(0, 0, 0, 1);
 			color: $yellow;
 			line-height: 1.2;
 
+			@include media($desktop) {
+				font-size: 2.9vw;
+			}
+
 			@include media($mobile){
 				font-size: 4.8vw;
-				margin-top: 40px;
+				margin-top: 10px;
 				line-height: 1.2;
 			}
 
-			@include media($smallMobile){
-				font-size: 30px;
+			@include media($smallMobile) {
+				font-size: 5.2vw;
 			}
 
 			&.sub_title {
-				font-size: 24px;
+				font-size: 22px;
+
+				@include media($desktop) {
+					font-size: 1.8vw;
+				}
 
 				@include media($tablet) {
 					font-size: 18px;
+				}
+
+				@include media($mobile) {
+					font-size: 3vw;
+				}
+
+				@include media($smallMobile) {
+					font-size: 4vw;
 				}
 			}
 		}
 
 		h3 {
 			@include foliocondensedbq;
-			font-size: 45px;
+			font-size: 42px;
 			font-weight: lighter;
 			margin: 20px 0;
 			text-shadow: 1px 4px 2px rgba(0, 0, 0, 1);
 			line-height: 1;
+
+			@include media($desktop) {
+				font-size: 38px;
+			}
 
 			@include media($tablet){
 				font-size: 4vw;
@@ -68,7 +152,7 @@
 			}
 
 			@include media($smallMobile){
-				font-size: 7.4vw;
+				font-size: 7vw;
 			}
 
 			a {
@@ -78,9 +162,13 @@
 
 		h4 {
 			@include foliocondensedbq;
-			font-size: 34px;
+			font-size: 32px;
 			text-shadow: 1px 4px 2px rgba(0, 0, 0, 1);
 			float: left;
+
+			@include media($desktop) {
+				font-size: 28px;
+			}
 
 			@include media($tablet) {
 				font-size: 26px;
@@ -165,7 +253,7 @@
 				font-size: 38px;
 
 				@include media($tablet) {
-					font-size: 32px;
+					font-size: 30px;
 				}
 			}
 
@@ -175,7 +263,7 @@
 				line-height: 1;
 
 				@include media($tablet) {
-					font-size: 14px;
+					font-size: 13px;
 				}
 			}
 
@@ -208,12 +296,8 @@
 			position: absolute;
 			left: 50%;
 			margin-left: -50px;
-			top: -20px;
+			bottom: -35px;
 			z-index: 1;
-
-			@include media($mobile) {
-				top: 40px;
-			}
 
 			p {
 				@include robotobold;

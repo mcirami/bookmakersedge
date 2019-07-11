@@ -44,9 +44,9 @@ class HomeController extends Controller
 	public function member() {
 		$user = Auth::user();
 
-        $receipt =  $user['clickbank_receipt'];
+        //$receipt =  $user['clickbank_receipt'];
 
-        if ($receipt != null) {
+        /*if ($receipt != null) {
 	        $ch = curl_init();
 	        curl_setopt($ch, CURLOPT_URL, "https://api.clickbank.com/rest/1.3/orders2/" . $receipt);
 	        curl_setopt($ch, CURLOPT_HEADER, true);
@@ -72,20 +72,20 @@ class HomeController extends Controller
 	        }
 
 
-        } else {
+        } else {*/
 
-	        $userRegisterDate = $user['created_at'];
+	       /* $userRegisterDate = $user['created_at'];
 
 	        if($user->hasRole('subscriber') && strtotime($userRegisterDate) < strtotime('-7 days')) {
 		        	return redirect('/expired');
-            } else{
+            } else{*/
 		        $distinctDays = Pick::distinct()->orderBy('day', 'desc')->get(['day']);
 		        $picks = Pick::get();
 		        $todaysDate = Carbon::now()->format('m-d-Y');
 
 		        return view('member.home')->with(['picks' => $picks, 'distinctDays' => $distinctDays, 'user' => $user, 'date' => $todaysDate]);
-            }
-        }
+            //}
+       // }
 	}
 
 	public function inactive() {

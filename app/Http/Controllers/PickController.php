@@ -23,7 +23,13 @@ class PickController extends Controller
 
 		$now = Carbon::now()->format('h:i A');
 
-		return view('member.picks.submit')->with(['todaysPicks' => $todaysPicks, 'now' => $now]);
+		$lastPick = Pick::get()->last();
+
+		if (strtotime($lastPick->day) != strtotime(Carbon::today())) {
+			$lastPick = null;
+		}
+
+		return view('member.picks.submit')->with(['todaysPicks' => $todaysPicks, 'now' => $now, 'lastPick' => $lastPick]);
 	}
 
 	public function saveNewPicks(PicksRequest $request, PickService $picks) {
@@ -35,7 +41,7 @@ class PickController extends Controller
 
 	}
 
-	public function updatePick(PicksRequest $request, PickService $picks) {
+	public function update(PicksRequest $request, PickService $picks) {
 		$requests = $request->all();
 		$picks->updatePick( $requests );
 
@@ -54,7 +60,7 @@ class PickController extends Controller
 			$distinctDays = Pick::distinct()->orderBy( 'day', 'desc' )->whereNotNull( 'grade' )->get( [ 'day' ] );
 			$daysAgo      = Carbon::now()->subDays( 22 );
 			foreach ( $distinctDays as $key => $day ) {
-				if ( strtotime( $day->day ) < strtotime( $daysAgo ) ) {
+				if ( strtotime( $day->day ) < strtotime( $daysAgo ) ||  strtotime( $day->day ) == strtotime(Carbon::today()) ) {
 					$distinctDays->forget( $key );
 				}
 			}
@@ -70,12 +76,6 @@ class PickController extends Controller
 
 	public function grade() {
 		$distinctDays = Pick::distinct()->orderBy('day', 'desc')->where('grade', NULL)->get(['day']);
-
-		foreach($distinctDays as $key => $day) {
-			if(strtotime($day->day) == strtotime(Carbon::today())) {
-				$distinctDays->forget($key);
-			}
-		}
 
 		$picks = Pick::get();
 		return view('member.picks.grade')->with(['picks' => $picks, 'distinctDays' => $distinctDays]);

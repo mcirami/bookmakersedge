@@ -24,6 +24,7 @@ class PickService {
 		$pick->line = $request['line'];
 		$pick->day = now();
 		$pick->game_time = $request['time'];
+		$pick->comment = $request['comment'];
 
 		$pick->save();
 	}
@@ -36,6 +37,7 @@ class PickService {
 		$pick->team = $request['team'];
 		$pick->line = $request['line'];
 		$pick->game_time = $request['time'];
+		$pick->comment = $request['comment'];
 
 		$pick->save();
 	}

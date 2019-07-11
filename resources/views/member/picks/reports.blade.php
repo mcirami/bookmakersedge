@@ -50,7 +50,7 @@
                                                         } elseif($pick->grade == "l") {
                                                             $dayLoseCount++;
                                                             $totalLoseCount++;
-                                                        } elseif($pick->grade == "p") {
+                                                        } elseif($pick->grade == "p/c") {
                                                             $dayPushCount++;
                                                             $totalPushCount++;
                                                         }
@@ -87,10 +87,10 @@
                                                         <div class="col-6">
                                                             <p>{{$pick->team}}</p>
                                                         </div>
-                                                        <div class="col-2 col-sm-3">
+                                                        <div class="col-2 col-sm-2">
                                                             <p>{{$pick->line}}</p>
                                                         </div>
-                                                        <div class="col-2 col-sm-1">
+                                                        <div class="col-2 col-sm-2">
                                                             <p class="text-uppercase">{{$pick->grade}}</p>
                                                         </div>
                                                     </div>
