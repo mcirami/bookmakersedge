@@ -54,3 +54,16 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+window.events = new Vue();
+
+window.Vue.prototype.authorize = function (handler) {
+
+    let user = window.App.user;
+
+    return user ? handler(user) : false;
+};
+
+window.flash = function(message, level = 'success') {
+    window.events.$emit('flash', { message, level });
+};

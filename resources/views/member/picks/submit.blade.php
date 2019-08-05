@@ -23,100 +23,108 @@
 
                     @foreach($todaysPicks as $pick)
                         @php $count++ @endphp
-                        <form class="col-12" action="/submit-picks/{{$pick['id']}}/update" method="post">
-
-                            {{ csrf_field() }}
-                            {{ method_field('PATCH') }}
-                            <div class="row pick_row current_picks">
-                                <div class="col-12 mb-3">
-                                    <h4 class="font-weight-bold">Submitted at: {{$pick['updated_at']->format('h:i')}} EST </h4>
-                                </div>
-                                <div class="col-12">
-                                    <div class="row">
-                                        <div class="col-12 col-sm-9">
+                        <div class="row w-100 pick_row current_picks">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-12 col-sm-9">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h4 class="font-weight-bold">Submitted at: {{$pick['updated_at']->format('h:i')}} EST </h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <p class="text-center text-sm-left">{{$pick['sport']}}</p>
+                                            </div>
+                                            <div class="col-4">
+                                                <p class="text-center text-sm-left">{{$pick['team']}}</p>
+                                            </div>
+                                            <div class="col-2">
+                                                <p class="text-center text-sm-left">{{$pick['line']}}</p>
+                                            </div>
+                                            <div class="col-4">
+                                                <p class="text-center text-sm-left">{{$pick['game_time']}} EST</p>
+                                            </div>
+                                        </div>
+                                        @if($pick['comment'])
                                             <div class="row">
-                                                <div class="col-12 col-sm-2">
-                                                    <p>{{$pick['sport']}}</p>
-                                                </div>
-                                                <div class="col-12 col-sm-4">
-                                                    <p>{{$pick['team']}}</p>
-                                                </div>
-                                                <div class="col-12 col-sm-2">
-                                                    <p>{{$pick['line']}}</p>
-                                                </div>
-                                                <div class="col-12 col-sm-4">
-                                                    <p>{{$pick['game_time']}} EST</p>
+                                                <div class="col-12 display_comment pt-3">
+                                                    <p>{{$pick['comment']}}</p>
                                                 </div>
                                             </div>
-                                            @if($pick['comment'])
-                                                <div class="row">
-                                                    <div class="col-12 display_comment pt-3">
-                                                        <p>{{$pick['comment']}}</p>
-                                                    </div>
-                                                </div>
-                                            @endif
-                                        </div>
-                                        <div class="col-12 col-sm-3 d-flex align-content-center">
+                                        @endif
+                                    </div>
+                                    <div class="col-12 col-sm-3 d-flex align-content-center">
+                                        <div class="w-100 m-auto">
                                             @if(strtotime($now) < strtotime($pick['game_time']))
-                                                <button name="picks_edit" class="button black w-100 d-block edit_pick m-auto">Edit</button>
+                                                <button name="picks_edit" class="button black w-100 d-block edit_pick mb-2">Edit</button>
+                                                <div class="delete_pick_wrap">
+                                                    <delete-pick :pick-id="{{$pick['id']}}"></delete-pick>
+                                                </div>
                                             @else
                                                 <p class="m-auto">Game Started</p>
                                             @endif
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-                            <div class="row pick_row text-left" style="display: none;">
-                                <input type="hidden" name="pick_id" value="{{$pick['id']}}">
-                                <div class="col-12">
-                                    <img class="cancel" src="<?php echo asset('images/close-button.png'); ?>" alt="">
-                                </div>
-                                <div class="col-12 col-md-3">
-                                    <label for="sport{{$count}}" class="col-form-label">{{ __('Sport') }}</label>
 
-                                    <select class="form-control" name="sport" id="sport{{$count}}" required>
-                                        <option value=""></option>
-                                        <option value="NFL" @php if( $pick['sport'] == "NFL") echo 'selected' @endphp >NFL</option>
-                                        <option value="NCAAF" @php if( $pick['sport'] == "NCAAF") echo 'selected' @endphp>NCAAF</option>
-                                        <option value="NBA" @php if( $pick['sport'] == "NBA") echo 'selected' @endphp>NBA</option>
-                                        <option value="NCAAB" @php if( $pick['sport'] == "NCAAB") echo 'selected' @endphp>NCAAB</option>
-                                        <option value="MLB" @php if( $pick['sport'] == "MLB") echo 'selected' @endphp>MLB</option>
-                                        <option value="NHL" @php if( $pick['sport'] == "NHL") echo 'selected' @endphp>NHL</option>
-                                        <option value="GOLF" @php if( $pick['sport'] == "GOLF") echo 'selected' @endphp>GOLF</option>
-                                    </select>
+                        </div>
+                        <form class="row" action="/submit-picks/{{$pick['id']}}/update" method="post" style="display: none;">
+                            {{ csrf_field() }}
+                            {{ method_field('PATCH') }}
+                            <div class="col-12">
+                                <div class="row pick_row text-left">
+                                    <input type="hidden" name="pick_id" value="{{$pick['id']}}">
+                                    <div class="col-12">
+                                        <img class="cancel" src="<?php echo asset('images/close-button.png'); ?>" alt="">
+                                    </div>
+                                    <div class="col-12 col-md-3">
+                                        <label for="sport{{$count}}" class="col-form-label">{{ __('Sport') }}</label>
 
-                                </div>
+                                        <select class="form-control" name="sport" id="sport{{$count}}" required>
+                                            <option value=""></option>
+                                            <option value="NFL" @if( $pick['sport'] == "NFL") selected @endif >NFL</option>
+                                            <option value="NCAAF" @if( $pick['sport'] == "NCAAF") selected @endif>NCAAF</option>
+                                            <option value="NBA" @if( $pick['sport'] == "NBA") selected @endif>NBA</option>
+                                            <option value="NCAAB" @if( $pick['sport'] == "NCAAB")selected @endif>NCAAB</option>
+                                            <option value="MLB" @if( $pick['sport'] == "MLB") selected @endif>MLB</option>
+                                            <option value="NHL" @if( $pick['sport'] == "NHL") selected @endif>NHL</option>
+                                            <option value="GOLF" @if( $pick['sport'] == "GOLF")  selected @endif>GOLF</option>
+                                        </select>
 
-                                <div class="col-12 col-md-4">
-                                    <label for="team{{$count}}" class="col-form-label">{{ __('Team') }} </label>
+                                    </div>
 
-                                    <input id="team{{$count}}" type="text" class="form-control" name="team" value="{{$pick['team']}}" required '>
+                                    <div class="col-12 col-md-4">
+                                        <label for="team{{$count}}" class="col-form-label">{{ __('Team') }} </label>
 
-                                </div>
+                                        <input id="team{{$count}}" type="text" class="form-control" name="team" value="{{$pick['team']}}" required>
 
-                                <div class="col-12 col-md-2">
-                                    <label for="line{{$count}}" class="col-form-label">{{ __('Line') }}</label>
+                                    </div>
 
-                                    <input id="line{{$count}}" type="text" class="form-control" name="line" value="{{$pick['line']}}" required '>
+                                    <div class="col-12 col-md-2">
+                                        <label for="line{{$count}}" class="col-form-label">{{ __('Line') }}</label>
 
-                                </div>
-                                <div class="col-12 col-md-3 mb-4 mb-md-0">
-                                    <label for="time{{$count}}" class="col-form-label">{{ __('Game Time') }} (EST)</label>
-                                    <input id="time{{$count}}" type="text" class="timepicker form-control" name="time" value="{{$pick['game_time']}}"/>
-                                </div>
-                                <div class="col-12">
-                                    <label for="comment{{$count}}" class="col-form-label w-100 text-left">{{ __('Comment') }}</label>
-                                    <textarea class="w-100 form-control" name="comment" id="comment{{$count}}" rows="3">{{$pick['comment']}}</textarea>
-                                </div>
-                                <div class="col-12 submit_button_wrap mt-4">
-                                    <div class="w-100">
-                                        <div class="text-center">
-                                            <button name="picks_update" class="button red d-block w-100" disabled>Submit</button>
+                                        <input id="line{{$count}}" type="text" class="form-control" name="line" value="{{$pick['line']}}" required>
+
+                                    </div>
+                                    <div class="col-12 col-md-3 mb-4 mb-md-0">
+                                        <label for="time{{$count}}" class="col-form-label">{{ __('Game Time') }} (EST)</label>
+                                        <input id="time{{$count}}" type="text" class="timepicker form-control" name="time" value="{{$pick['game_time']}}"/>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="comment{{$count}}" class="col-form-label w-100 text-left">{{ __('Comment') }}</label>
+                                        <textarea class="w-100 form-control" name="comment" id="comment{{$count}}" rows="3">{{$pick['comment']}}</textarea>
+                                    </div>
+                                    <div class="col-12 submit_button_wrap mt-4">
+                                        <div class="w-100">
+                                            <div class="text-center">
+                                                <button name="picks_update" class="button red d-block w-100" disabled>Submit</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div><!-- pick_row -->
+                                </div><!-- pick_row -->
+                            </div>
                         </form>
 
                     @endforeach

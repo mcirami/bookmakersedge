@@ -15,29 +15,33 @@
     </head>
 
     <body>
-        <header id="global_header">
-            @include('member.layouts.navbar')
-        </header>
+     <div id="app">
+            <header id="global_header">
+                @include('member.layouts.navbar')
+            </header>
 
-        <div class="wrapper">
-            <div class="page_content_wrapper full_width member">
+            <div class="wrapper">
+                <div class="page_content_wrapper full_width member">
 
-                <div class="sub_header">
-                    <h2><?php echo Route::currentRouteName(); ?></h2>
-                </div>
+                    <div class="sub_header">
+                        <h2><?php echo Route::currentRouteName(); ?></h2>
+                    </div>
 
-                <div class="my_container">
-                    <div class="row">
-                        <div class="col-12">
-                            @include ('member.layouts.partials._notifications')
+                    <div class="my_container">
+                        <div class="row">
+                            <div class="col-12">
+                                @include ('member.layouts.partials._notifications')
+                            </div>
                         </div>
                     </div>
+
+                    @yield('content')
+
+                    <flash message="{{ session('flash') }}"></flash>
                 </div>
 
-                @yield('content')
-            </div>
-
-            @include('member.layouts.footer')
-        </div><!-- wrapper -->
+                @include('member.layouts.footer')
+            </div><!-- wrapper -->
+        </div><!-- #app -->
     </body>
 </html>

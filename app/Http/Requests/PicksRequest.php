@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
+use Illuminate\Http\Request;
 
 class PicksRequest extends FormRequest
 {
@@ -22,29 +23,17 @@ class PicksRequest extends FormRequest
      *
      * @return array
      */
-    public function rules() {
-
-    	/*$rules = [];
-	    $requests = $this->request->all();
-
-	    foreach($requests as $key=>$values) {
-		    if(is_array($values)) {
-			    foreach ( $values as $key2 => $value ) {
-				    $rules[ $key.".".$key2 ]   = 'required|string|max:255';
-			    }
-		    }
-	    }
-
-	    return $rules;*/
+    public function rules(Request $request) {
 
 	    return [
 	    	'sport' => 'required|string|max:255',
-		    'team' => Rule::unique('picks')->ignore($this->pick_id, 'id')->where(function ($query) {
-			    return $query->where('day', Carbon::today());
-		    }),
+		    'team' => ['required', Rule::unique('picks')->ignore($this->pick_id, 'id')->where(function ($query) use($request) {
+			        return $query->where('day', Carbon::today())->where('game_time', $request['time']);
+		        })
+		    ],
 		    'line' => 'required|string|max:255',
 		    'time' => 'required|string|max:255',
-		    'comment' => 'string|max:255'
+		    'comment' => 'sometimes|nullable|string|max:255'
         ];
     }
 }

@@ -699,22 +699,6 @@
 			}
 		}
 
-
-		&.grade_page {
-			width: 75%;
-
-			@include media($mobile) {
-				width: 100%;
-				padding: 20px 0;
-			}
-
-			.column {
-				@include media($smallMobile) {
-
-				}
-			}
-		}
-
 		&.empty {
 			margin-bottom: 20%;
 		}
@@ -795,7 +779,7 @@
 			-moz-border-radius-bottomright: 4px;
 		}
 
-		.cancel {
+		.cancel, .cancel_grade_update {
 			width: 25px;
 			position: absolute;
 			right: 14px;
@@ -836,6 +820,65 @@
 				border-radius: 4px;
 				-webkit-border-radius: 4px;
 				-moz-border-radius: 4px;
+			}
+		}
+
+		&.grade_page {
+			width: 75%;
+
+			@include media($mobile) {
+				width: 100%;
+				padding: 20px 0;
+			}
+
+			.info_wrap {
+				border: 1px solid #c8c8c8;
+				border-radius: 4px;
+				-webkit-border-radius: 4px;
+				-moz-border-radius: 4px;
+
+				button.edit_grade {
+					font-size: 14px;
+					padding: 4px 2px;
+
+					@include media($desktop) {
+						font-size: 12px;
+					}
+				}
+
+				button.grade_update {
+					font-size: 14px;
+					padding: 2px 2px;
+
+					@include media($desktop) {
+						font-size: 12px;
+					}
+				}
+
+				select.form-control {
+					height: 29px;
+				}
+
+				.cancel_grade_update {
+					width: 20px;
+					right: -18px;
+					top: -18px;
+				}
+
+				.grade_info {
+					border: 1px transparent;
+					padding: 4px 0;
+				}
+
+				.update_grade_form {
+					border: 1px solid #c8c8c8;
+					padding: 5px;
+					-webkit-border-radius: 4px;
+					-moz-border-radius: 4px;
+					border-radius: 4px;
+					margin-top: -1px;
+				}
+
 			}
 		}
 	}

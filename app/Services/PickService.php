@@ -42,19 +42,11 @@ class PickService {
 		$pick->save();
 	}
 
-	public function saveGrade($requestArray) {
-		$picks = Pick::where('grade', NULL)->get();
+	public function updateGrade($request, $pick) {
+		$pick = Pick::findOrFail($pick['id']);
 
-		foreach ($requestArray as $request=>$key) {
+		$pick->grade = $request['grade'];
 
-			foreach ($picks as $pick) {
-				if($request == $pick->id) {
-					if ($key != "NULL") {
-						$pick->grade = $key;
-						$pick->save();
-					}
-				}
-			}
-		}
+		$pick->save();
 	}
 }

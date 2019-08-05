@@ -10233,7 +10233,7 @@ p {
 #global_header .header_bottom .menu ul li {
   width: auto;
   float: left;
-  padding: 15px 15px 15px 8px;
+  padding: 15px 10px 15px 4px;
 }
 
 @media screen and (max-width: 991px) {
@@ -11713,18 +11713,18 @@ p {
 }
 
 .home_section .hero .cta_button .amount {
-  font-size: 38px;
+  font-size: 34px;
 }
 
 @media screen and (max-width: 991px) {
   .home_section .hero .cta_button .amount {
-    font-size: 30px;
+    font-size: 24px;
   }
 }
 
 .home_section .hero .cta_button .small {
   color: #1d5e80;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1;
 }
 
@@ -13334,17 +13334,6 @@ p {
   padding: 20px 0;
 }
 
-.picks_page .form_wrapper.grade_page {
-  width: 75%;
-}
-
-@media screen and (max-width: 767px) {
-  .picks_page .form_wrapper.grade_page {
-    width: 100%;
-    padding: 20px 0;
-  }
-}
-
 .picks_page .form_wrapper.empty {
   margin-bottom: 20%;
 }
@@ -13436,7 +13425,8 @@ p {
   -moz-border-radius-bottomright: 4px;
 }
 
-.picks_page .form_wrapper .cancel {
+.picks_page .form_wrapper .cancel,
+.picks_page .form_wrapper .cancel_grade_update {
   width: 25px;
   position: absolute;
   right: 14px;
@@ -13488,6 +13478,68 @@ p {
 
 .picks_page .form_wrapper .current_picks .info_wrap:last-child {
   margin-right: 0;
+}
+
+.picks_page .form_wrapper.grade_page {
+  width: 75%;
+}
+
+@media screen and (max-width: 767px) {
+  .picks_page .form_wrapper.grade_page {
+    width: 100%;
+    padding: 20px 0;
+  }
+}
+
+.picks_page .form_wrapper.grade_page .info_wrap {
+  border: 1px solid #c8c8c8;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+
+.picks_page .form_wrapper.grade_page .info_wrap button.edit_grade {
+  font-size: 14px;
+  padding: 4px 2px;
+}
+
+@media screen and (max-width: 1199px) {
+  .picks_page .form_wrapper.grade_page .info_wrap button.edit_grade {
+    font-size: 12px;
+  }
+}
+
+.picks_page .form_wrapper.grade_page .info_wrap button.grade_update {
+  font-size: 14px;
+  padding: 2px 2px;
+}
+
+@media screen and (max-width: 1199px) {
+  .picks_page .form_wrapper.grade_page .info_wrap button.grade_update {
+    font-size: 12px;
+  }
+}
+
+.picks_page .form_wrapper.grade_page .info_wrap select.form-control {
+  height: 29px;
+}
+
+.picks_page .form_wrapper.grade_page .info_wrap .cancel_grade_update {
+  width: 20px;
+  right: -18px;
+  top: -18px;
+}
+
+.picks_page .form_wrapper.grade_page .info_wrap .grade_info {
+  border: 1px transparent;
+  padding: 4px 0;
+}
+
+.picks_page .form_wrapper.grade_page .info_wrap .update_grade_form {
+  border: 1px solid #c8c8c8;
+  padding: 5px;
+  border-radius: 4px;
+  margin-top: -1px;
 }
 
 .member_home {

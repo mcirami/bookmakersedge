@@ -75,18 +75,42 @@ class PickController extends Controller
 	}
 
 	public function grade() {
-		$distinctDays = Pick::distinct()->orderBy('day', 'desc')->where('grade', NULL)->get(['day']);
+
+		$dayMin = Carbon::now()->subDays( 2 );
+
+		$distinctDays = Pick::distinct()->orderBy('day', 'desc')->where
+		(function($q) {
+			$dayMax = Carbon::now()->addDays( 2 );
+			$q->where('grade', NULL)
+				->orWhereDate('day', '<=', $dayMax );
+		})->get(['day']);
+
+		foreach($distinctDays as $key => $day) {
+			if ( strtotime( $day->day ) < strtotime( $dayMin ) ) {
+				$distinctDays->forget( $key );
+			}
+		}
 
 		$picks = Pick::get();
 		return view('member.picks.grade')->with(['picks' => $picks, 'distinctDays' => $distinctDays]);
 	}
 
-	public function saveGrade(Request $request, PickService $picks) {
-		$requestArray = $request->all();
+	public function updateGrade(Request $request, Pick $pick, PickService $picks) {
 
-		$picks->saveGrade($requestArray);
+		$picks->updateGrade($request, $pick);
 
-		return redirect()->back()->with('success', 'Your Picks Grades Were Saved' );
+		return redirect()->back()->with('success', 'Your Pick Grade Was Saved' );
 
+	}
+
+	public function destroy(Pick $pick) {
+
+		$pick->delete();
+
+		/*if (request()->expectsJson()) {
+			return response(['status' => 'Pick deleted']);
+		}*/
+
+		return back()->with('success', 'Your Pick Was Deleted' );
 	}
 }

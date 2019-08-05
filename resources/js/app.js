@@ -5,9 +5,9 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+window.Vue = require('vue');
 
-//window.Vue = require('vue');
+require('./bootstrap');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -21,7 +21,13 @@ const app = new Vue({
     el: '#app'
 });*/
 
+Vue.component('flash', require('./components/Flash.vue').default);
+Vue.component('update-pick-grade', require('./components/UpdatePickGrade.vue').default);
+Vue.component('delete-pick', require('./components/DeletePick.vue').default);
 
+const app = new Vue({
+	el: '#app'
+});
 
 jQuery(document).ready(function($) {
 
@@ -168,21 +174,40 @@ jQuery(document).ready(function($) {
 	$('.edit_pick').click(function(e) {
 		e.preventDefault();
 
-		$(this).closest('.pick_row').next('.pick_row').fadeIn(300);
-		$(this).closest('.pick_row').next('.pick_row').find('button').prop('disabled', false);
+		$(this).closest('.pick_row').next('form').fadeIn(300);
+		$(this).closest('.pick_row').next('form').find('button').prop('disabled', false);
 		$(this).closest('.pick_row').css('display', 'none');
 		$('.edit_pick').prop("disabled",true);
 
 	});
 
 	$('.cancel').click(function(){
-		$(this).parent().parent().prev('.pick_row').fadeIn(300);
-		$(this).parent().parent().css('display', 'none');
-		$(this).parent().parent().children('.submit_button_wrap').find('button').prop("disabled",true);
+		$(this).closest('form').prev('.pick_row').fadeIn(300);
+		$(this).closest('form').css('display', 'none');
+		$(this).closest('form').children('.submit_button_wrap').find('button').prop("disabled",true);
 		$('.edit_pick').prop("disabled",false);
 
 	});
 
+	// Update pick grade
+
+	$('.edit_grade').click(function(e) {
+		e.preventDefault();
+
+		$(this).closest('.info_wrap').find('form').fadeIn(300);
+		$(this).closest('.info_wrap').find('form').find('button').prop('disabled', false);
+		$(this).closest('.grade_info').css('display', 'none');
+		$('.edit_grade').prop("disabled",true);
+
+	});
+
+	$('.cancel_grade_update').click(function(){
+		$(this).closest('form').prev('.grade_info').fadeIn(300);
+		$(this).closest('form').css('display', 'none');
+		$(this).closest('form').find('button').prop("disabled",true);
+		$('.edit_grade').prop("disabled",false);
+
+	});
 
 	/*****************************/
 

@@ -48,8 +48,10 @@ Route::group(['middleware' => 'provider'], function(){
 	Route::get('submit-picks', 'PickController@index')->name('Make Your Picks');
 	Route::post('submit-picks/save', 'PickController@saveNewPicks');
 	Route::patch('submit-picks/{pick}/update', 'PickController@update');
+	Route::post('submit-picks/{pick}', 'PickController@destroy');
 	Route::get('grade-picks', 'PickController@grade')->name('Grade Your Picks');
-	Route::post('grade-picks/save', 'PickController@saveGrade');
+	Route::patch('grade-picks/{pick}/update', 'PickController@updateGrade');
+	//Route::patch('grade-picks/{pick}/update', 'PickController@update');
 });
 
 

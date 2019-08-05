@@ -250,16 +250,16 @@
 			}
 
 			.amount {
-				font-size: 38px;
+				font-size: 34px;
 
 				@include media($tablet) {
-					font-size: 30px;
+					font-size: 24px;
 				}
 			}
 
 			.small {
 				color: #1d5e80;
-				font-size: 20px;
+				font-size: 18px;
 				line-height: 1;
 
 				@include media($tablet) {
