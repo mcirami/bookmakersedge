@@ -1,6 +1,8 @@
 
 window._ = require('lodash');
 
+window.$ = window.jQuery = require('jquery');
+
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
@@ -14,6 +16,14 @@ try {
     require('bootstrap');
 } catch (e) {}
 
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+window.Vue = require('vue');
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
@@ -22,7 +32,7 @@ try {
 
 window.axios = require('axios');
 
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+//window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
@@ -30,13 +40,13 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * a simple convenience so we don't have to attach every token manually.
  */
 
-let token = document.head.querySelector('meta[name="csrf-token"]');
+/*let token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
     window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
-}
+}*/
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -55,15 +65,20 @@ if (token) {
 //     encrypted: true
 // });
 
+window.axios.defaults.headers.common = {
+    'X-Requested-With': 'XMLHttpRequest',
+    'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+};
+
 window.events = new Vue();
 
-window.Vue.prototype.authorize = function (handler) {
+/*window.Vue.prototype.authorize = function (handler) {
 
     let user = window.App.user;
 
     return user ? handler(user) : false;
-};
+};*/
 
-window.flash = function(message, level = 'success') {
-    window.events.$emit('flash', { message, level });
+window.flash = function(message) {
+    window.events.$emit('flash', message);
 };

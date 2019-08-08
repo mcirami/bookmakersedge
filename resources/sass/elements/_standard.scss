@@ -179,3 +179,23 @@
 		font-size: 14px;
 	}
 }
+
+.flash_message {
+	position: fixed;
+	bottom: 0;
+	font-size: 24px;
+	text-align: center;
+	right: 70px;
+	margin: 0;
+	z-index: 999;
+
+	@include media($smallMobile) {
+		right: 50%;
+		margin-right: -175px;
+	}
+
+	.alert {
+		padding: 20px;
+	}
+}
+

@@ -8,6 +8,7 @@ use App\Services\PickService;
 use Illuminate\Support\Facades\Auth;
 use App\Pick;
 use Carbon\Carbon;
+use Illuminate\Validation\Rule;
 
 class PickController extends Controller
 {
@@ -37,15 +38,35 @@ class PickController extends Controller
 		$requests = $request->all();
 		$picks->savePicks( $requests );
 
-		return redirect()->back()->with('success', 'Your Pick Has Been Saved') ;
+		//$request->session()->flash('Your Pick Has Been Saved', 'success' );
+		return redirect()->back()->with('flash', 'Your Pick Has Been Saved' );
 
 	}
 
-	public function update(PicksRequest $request, PickService $picks) {
-		$requests = $request->all();
-		$picks->updatePick( $requests );
+	public function update(Request $request, PickService $update, Pick $pick) {
+		//$requests = $request->all();
 
-		return redirect()->back()->with('success', 'Your Pick Has Been Updated') ;
+		try {
+			$request->validate([
+				'sport' => 'required|string|max:255',
+				'team' => ['required', Rule::unique('picks')->ignore($pick->id, 'id')->where(function ($query) use($request) {
+					return $query->where('day', Carbon::today())->where('game_time', $request['game_time']);
+				})
+				],
+				'line' => 'required|string|max:255',
+				'game_time' => 'required|string|max:255',
+				'comment' => 'sometimes|nullable|string|max:255'
+			]);
+
+			$update->updatePick($request, $pick);
+
+		} catch(\Exception $e) {
+
+			return response('That team and game time has already been submitted.', 422);
+		}
+
+
+
 	}
 
 	public function reports(){
@@ -99,18 +120,23 @@ class PickController extends Controller
 
 		$picks->updateGrade($request, $pick);
 
-		return redirect()->back()->with('success', 'Your Pick Grade Was Saved' );
+		//return redirect()->back()->with('flash', 'Your Pick Grade Was Updated' );
 
 	}
 
 	public function destroy(Pick $pick) {
 
-		$pick->delete();
+			$pick->delete();
+
+			if (request()->expectsJson()) {
+				return response(['status' => 'Pick has been deleted']);
+			}
+
 
 		/*if (request()->expectsJson()) {
 			return response(['status' => 'Pick deleted']);
 		}*/
 
-		return back()->with('success', 'Your Pick Was Deleted' );
+		//return back()->with('success', 'Your Pick Was Deleted' );
 	}
 }

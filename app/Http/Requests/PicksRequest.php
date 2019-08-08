@@ -28,11 +28,11 @@ class PicksRequest extends FormRequest
 	    return [
 	    	'sport' => 'required|string|max:255',
 		    'team' => ['required', Rule::unique('picks')->ignore($this->pick_id, 'id')->where(function ($query) use($request) {
-			        return $query->where('day', Carbon::today())->where('game_time', $request['time']);
+			        return $query->where('day', Carbon::today())->where('game_time', $request['game_time']);
 		        })
 		    ],
 		    'line' => 'required|string|max:255',
-		    'time' => 'required|string|max:255',
+		    'game_time' => 'required|string|max:255',
 		    'comment' => 'sometimes|nullable|string|max:255'
         ];
     }

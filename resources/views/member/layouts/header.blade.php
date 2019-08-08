@@ -11,7 +11,6 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
-
     </head>
 
     <body>
@@ -37,7 +36,13 @@
 
                     @yield('content')
 
-                    <flash message="{{ session('flash') }}"></flash>
+                    <div class="my_container">
+                        <div class="row flash_message">
+                            <div class="col-12">
+                                <flash message="{{ session('flash') }}"></flash>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 @include('member.layouts.footer')
