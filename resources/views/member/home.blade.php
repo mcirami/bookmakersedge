@@ -9,7 +9,7 @@
                 $username = $user->username;
             @endphp
 
-            <h2>Welcome To Book Makers Edge, @php if ($firstName != NULL) { echo $firstName; } else { echo $username; } @endphp!</h2>
+            <h2>Welcome To Book Makers Edge, @if ($firstName != NULL) {{ $firstName }} @else {{ $username }} @endif!</h2>
 
             <div class="full_width mt-5">
 
@@ -22,7 +22,6 @@
                     @foreach ($distinctDays as $day)
 
                         @if ($day->day->format('m-d-Y') == $date)
-
 
                             <div class="my_row">
 

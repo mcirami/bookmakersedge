@@ -41,7 +41,7 @@
                                             @if($pick->day == $day->day && $pick->grade != Null)
                                                 @php $pickNumber++; @endphp
                                                 <div class="column">
-                                                    <h3>Pick @php echo $pickNumber; @endphp</h3>
+                                                    <h3>Pick {{$pickNumber}}</h3>
                                                     <p class="text-uppercase">{{$pick->grade}}</p>
                                                     @php
                                                         if($pick->grade == "w") {
@@ -61,9 +61,7 @@
                                         <div class="column">
                                             <h3>Record</h3>
                                             <h4>
-                                                @php
-                                                    echo $dayWinCount . "-" . $dayLoseCount . "-" . $dayPushCount;
-                                                @endphp
+                                                {{$dayWinCount}}-{{$dayLoseCount}}-{{$dayPushCount}}
                                             </h4>
                                         </div>
                                         <div class="column">
@@ -72,7 +70,7 @@
 
                                     </div>
 
-                                    <div class="picks_wrap collapse my_row" id="collapse@php echo $dayCount @endphp" data-parent="#reportAccordion">
+                                    <div class="picks_wrap collapse my_row" id="collapse{{$dayCount}}" data-parent="#reportAccordion">
 
                                         @foreach ($picks as $pick)
 
@@ -107,12 +105,12 @@
                     </div><!-- accordion -->
 
                     <div class="my_row total">
-                        <h3>Record Total: @php echo $totalWinCount . "-" . $totalLoseCount . "-" .  $totalPushCount;@endphp</h3>
+                        <h3>Record Total: {{$totalWinCount}}-{{$totalLoseCount}}-{{$totalPushCount}}</h3>
                         @php
                             $totalGames = $totalWinCount + $totalLoseCount;
                             $winPercent = round($totalWinCount / $totalGames, 3) * 100;
                         @endphp
-                        <h3>Winning PCT: @php echo $winPercent @endphp%</h3>
+                        <h3>Winning PCT: {{$winPercent}}%</h3>
                     </div>
                 @else
                     <h3 class="text-center">There is nothing to report in the last 21 days</h3>

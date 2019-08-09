@@ -15,12 +15,9 @@
                 </div>
             @endif
 
-            @php //dd($distinctDays) @endphp
-            <div class="content_wrap full_width form_wrapper grade_page picks_form d-inline-block @if($distinctDays->isEmpty())  echo 'empty' @endif">
+            <div class="content_wrap full_width form_wrapper grade_page picks_form d-inline-block @if($distinctDays->isEmpty()) empty @endif">
 
                 @if(!$distinctDays->isEmpty())
-
-                    {{ csrf_field() }}
 
                     <h3 class="text-center pb-3 mb-3 sub_title">Grade your picks below and submit for user to see</h3>
 
@@ -36,39 +33,34 @@
 
                             @if($pick->day == $day->day)
 
-                               {{-- <pick :attributes="{{$pick}}" inline-template v-cloak>--}}
-                                    <div class="form-group my_row d-block d-sm-flex align-content-center">
-                                        @php $count++ @endphp
+                                <div class="form-group my_row d-block d-sm-flex align-content-center">
 
-                                        {{--<input type="hidden" value="{{$pick->id}}" name="{{$pick->id}}">--}}
-                                        <div class="icon_wrap mt-auto mb-4 mb-sm-auto ml-auto mr-0">
-                                            <h3>@php echo $count @endphp</h3>
+                                    <div class="icon_wrap mt-auto mb-4 mb-sm-auto ml-auto mr-0">
+                                        <h3>{{ ++$count }}</h3>
+                                    </div>
+                                    <div class="info_wrap m-auto row">
+                                        <div class="col-5 col-lg-2">
+                                            <label class="col-form-label">{{ __('Sport') }}</label>
+                                            <p class="text-left">{{$pick->sport}}</p>
                                         </div>
-                                        <div class="info_wrap m-auto row">
-                                            <div class="col-5 col-lg-2">
-                                                <label class="col-form-label">{{ __('Sport') }}</label>
-                                                <p class="text-left">{{$pick->sport}}</p>
-                                            </div>
 
-                                            <div class="col-5 col-lg-3">
-                                                <label class="col-form-label">{{ __('Team') }} </label>
-                                                <p class="text-left">{{$pick->team}}</p>
-                                            </div>
+                                        <div class="col-5 col-lg-3">
+                                            <label class="col-form-label">{{ __('Team') }} </label>
+                                            <p class="text-left">{{$pick->team}}</p>
+                                        </div>
 
-                                            <div class="col-2 col-lg-2">
-                                                <label class="col-form-label">{{ __('Line') }}</label>
-                                                <p class="text-left">{{$pick->line}}</p>
-                                            </div>
-                                            <div class="col-12 col-lg-5">
-                                                <label for="pick_grade" class="col-form-label">{{ __('Grade') }}</label>
+                                        <div class="col-2 col-lg-2">
+                                            <label class="col-form-label">{{ __('Line') }}</label>
+                                            <p class="text-left">{{$pick->line}}</p>
+                                        </div>
+                                        <div class="col-12 col-lg-5">
+                                            <label for="pick_grade" class="col-form-label">{{ __('Grade') }}</label>
 
-                                                <pick :attributes="{{$pick}}"></pick>
+                                            <pick :attributes="{{$pick}}"></pick>
 
-                                            </div>
-                                        </div><!-- info_wrap -->
-                                    </div><!-- my_row form-group -->
-
-                                {{--</pick>--}}
+                                        </div>
+                                    </div><!-- info_wrap -->
+                                </div><!-- my_row form-group -->
 
                             @endif
 

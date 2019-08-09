@@ -18,9 +18,13 @@
                     <p>When you are logged in, click on 'Account' and follow the links to update your information.</p>
                 @endif
 
-                <h4 class="mb-5"><a href="https://bookmakersedge.com/login">Login now</a> and get access to everything you need to start winning!</h4>
+                <h4 class="mb-5">
+                    <a href="https://bookmakersedge.com/login">Login now</a> and get access to everything you need to start winning!
+                </h4>
 
-                <p>If you have any questions, dont' hesitate to contact us at <a href="mailto:support@bookmakersedge.com">support@bookmakersedge.com</a></p>
+                <p>If you have any questions, dont' hesitate to contact us at
+                    <a href="mailto:support@bookmakersedge.com">support@bookmakersedge.com</a>
+                </p>
                 <p>Your credit card statement will show a charge by <span>ClickBank or CLKBANK*COM</span></p>
             </div>
         </div>

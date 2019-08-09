@@ -20,10 +20,7 @@
                     <div class="col-12">
                         <h3 class="text-center w-100 pb-3">Picks You Submitted Today</h3>
 
-                        {{--@php $count  = 0 @endphp--}}
-
                         @foreach($todaysPicks as $pick)
-                            {{--@php $count++ @endphp--}}
 
                             <pick :attributes="{{$pick}}" inline-template v-cloak>
 
