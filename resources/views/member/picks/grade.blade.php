@@ -22,7 +22,7 @@
 
                     {{ csrf_field() }}
 
-                    <h3 class="text-center">Grade your picks below and submit for user to see</h3>
+                    <h3 class="text-center pb-3 mb-3 sub_title">Grade your picks below and submit for user to see</h3>
 
                     @foreach ($distinctDays as $day)
 
@@ -45,7 +45,7 @@
                                             <h3>@php echo $count @endphp</h3>
                                         </div>
                                         <div class="info_wrap m-auto row">
-                                            <div class="col-5 col-lg-3">
+                                            <div class="col-5 col-lg-2">
                                                 <label class="col-form-label">{{ __('Sport') }}</label>
                                                 <p class="text-left">{{$pick->sport}}</p>
                                             </div>
@@ -59,7 +59,7 @@
                                                 <label class="col-form-label">{{ __('Line') }}</label>
                                                 <p class="text-left">{{$pick->line}}</p>
                                             </div>
-                                            <div class="col-12 col-lg-4">
+                                            <div class="col-12 col-lg-5">
                                                 <label for="pick_grade" class="col-form-label">{{ __('Grade') }}</label>
 
                                                 <pick :attributes="{{$pick}}"></pick>

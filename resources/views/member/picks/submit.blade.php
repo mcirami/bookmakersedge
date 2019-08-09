@@ -17,117 +17,118 @@
 
             @if(!$todaysPicks->isEmpty())
                 <div class="form_wrapper mb-5 row update_picks_form">
-                    <h3 class="text-center w-100 pb-3">Picks You Submitted Today</h3>
+                    <div class="col-12">
+                        <h3 class="text-center w-100 pb-3">Picks You Submitted Today</h3>
 
-                    {{--@php $count  = 0 @endphp--}}
+                        {{--@php $count  = 0 @endphp--}}
 
-                    @foreach($todaysPicks as $pick)
-                        {{--@php $count++ @endphp--}}
+                        @foreach($todaysPicks as $pick)
+                            {{--@php $count++ @endphp--}}
 
-                    <pick :attributes="{{$pick}}" inline-template v-cloak>
+                            <pick :attributes="{{$pick}}" inline-template v-cloak>
 
-                        <div class="row w-100 pick_row current_picks">
-                            <div class="col-12">
-                                <div v-if="editing">
-
+                                <div class="row no-gutters pick_row current_picks">
                                     <div class="col-12">
-                                        <div class="row pick_row text-left">
+                                        <div v-if="editing">
 
-                                            <div class="col-12 col-md-3">
-                                                <label for="sport" class="col-form-label">{{ __('Sport') }}</label>
+                                            <div class="row pick_row text-left">
 
-                                                <select class="form-control" name="sport" id="sport" v-model="sport" required>
-                                                    <option value=""></option>
-                                                    <option value="NFL" >NFL</option>
-                                                    <option value="NCAAF">NCAAF</option>
-                                                    <option value="NBA">NBA</option>
-                                                    <option value="NCAAB">NCAAB</option>
-                                                    <option value="MLB">MLB</option>
-                                                    <option value="NHL" >NHL</option>
-                                                    <option value="GOLF">GOLF</option>
-                                                </select>
+                                                <div class="col-12 col-md-3">
+                                                    <label for="sport" class="col-form-label">{{ __('Sport') }}</label>
 
-                                            </div>
+                                                    <select class="form-control" name="sport" id="sport" v-model="sport" required>
+                                                        <option value=""></option>
+                                                        <option value="NFL" >NFL</option>
+                                                        <option value="NCAAF">NCAAF</option>
+                                                        <option value="NBA">NBA</option>
+                                                        <option value="NCAAB">NCAAB</option>
+                                                        <option value="MLB">MLB</option>
+                                                        <option value="NHL" >NHL</option>
+                                                        <option value="GOLF">GOLF</option>
+                                                    </select>
 
-                                            <div class="col-12 col-md-4">
-                                                <label for="team" class="col-form-label">{{ __('Team') }} </label>
+                                                </div>
 
-                                                <input id="team" type="text" class="form-control" name="team" v-model="team" required>
+                                                <div class="col-12 col-md-4">
+                                                    <label for="team" class="col-form-label">{{ __('Team') }} </label>
 
-                                            </div>
+                                                    <input id="team" type="text" class="form-control" name="team" v-model="team" required>
 
-                                            <div class="col-12 col-md-2">
-                                                <label for="line" class="col-form-label">{{ __('Line') }}</label>
+                                                </div>
 
-                                                <input id="line" type="text" class="form-control" name="line" v-model="line" required>
+                                                <div class="col-12 col-md-2">
+                                                    <label for="line" class="col-form-label">{{ __('Line') }}</label>
 
-                                            </div>
-                                            <div class="col-12 col-md-3 mb-4 mb-md-0">
-                                                <label for="game_time" class="col-form-label">{{ __('Game Time') }} (EST)</label>
-                                                <input id="game_time" type="text" class="timepicker form-control" name="game_time" v-model="game_time"/>
-                                            </div>
-                                            <div class="col-12">
-                                                <label for="comment" class="col-form-label w-100 text-left">{{ __('Comment') }}</label>
-                                                <textarea class="w-100 form-control" name="comment" id="comment" rows="3" v-model="comment"></textarea>
-                                            </div>
-                                            <div class="col-12 submit_button_wrap mt-4">
+                                                    <input id="line" type="text" class="form-control" name="line" v-model="line" required>
 
-                                                <button name="picks_update" class="button red d-block float-left" @click="update">Update</button>
-                                                <button name="cancel_update" class="button yellow d-block float-right" @click="editing = false">Cancel</button>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div><!-- if editing -->
-                                <div v-else>
-                                    <div class="row">
-                                        <div class="col-12 col-sm-9">
-                                            <div class="row">
+                                                </div>
+                                                <div class="col-12 col-md-3 mb-4 mb-md-0">
+                                                    <label for="game_time" class="col-form-label">{{ __('Game Time') }} (EST)</label>
+                                                    <input id="game_time" type="text" class="timepicker form-control" name="game_time" v-model="game_time"/>
+                                                </div>
                                                 <div class="col-12">
-                                                    <h4 class="font-weight-bold">Submitted at: {{$pick['updated_at']->format('h:i')}} EST </h4>
+                                                    <label for="comment" class="col-form-label w-100 text-left">{{ __('Comment') }}</label>
+                                                    <textarea class="w-100 form-control" name="comment" id="comment" rows="3" v-model="comment"></textarea>
+                                                </div>
+                                                <div class="col-12 submit_button_wrap mt-4">
+
+                                                    <button name="picks_update" class="button red d-block float-left" @click="update">Update</button>
+                                                    <button name="cancel_update" class="button yellow d-block float-right" @click="cancel">Cancel</button>
+
                                                 </div>
                                             </div>
+
+
+                                        </div><!-- if editing -->
+                                        <div v-else>
                                             <div class="row">
-                                                <div class="col-2">
-                                                    <p class="text-center text-sm-left" v-text="sport"></p>
+                                                <div class="col-12 col-sm-9">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <h4 class="font-weight-bold">Submitted at: {{$pick['updated_at']->format('h:i')}} EST </h4>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-2">
+                                                            <p class="text-center text-sm-left" v-text="sport"></p>
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <p class="text-center text-sm-left" v-text="team"></p>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <p class="text-center text-sm-left" v-text="line"></p>
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <p class="text-center text-sm-left"><span v-text="game_time"></span> EST</p>
+                                                        </div>
+                                                    </div>
+                                                    @if($pick['comment'])
+                                                        <div class="row">
+                                                            <div class="col-12 display_comment pt-3">
+                                                                <p v-text="comment"></p>
+                                                            </div>
+                                                        </div>
+                                                    @endif
                                                 </div>
-                                                <div class="col-4">
-                                                    <p class="text-center text-sm-left" v-text="team"></p>
-                                                </div>
-                                                <div class="col-2">
-                                                    <p class="text-center text-sm-left" v-text="line"></p>
-                                                </div>
-                                                <div class="col-4">
-                                                    <p class="text-center text-sm-left"><span v-text="game_time"></span> EST</p>
-                                                </div>
-                                            </div>
-                                            @if($pick['comment'])
-                                                <div class="row">
-                                                    <div class="col-12 display_comment pt-3">
-                                                        <p v-text="comment"></p>
+                                                <div class="col-12 col-sm-3 d-flex align-content-center">
+                                                    <div class="w-100 m-auto">
+                                                        @if(strtotime($now) < strtotime($pick['game_time']))
+                                                            <button name="picks_edit" class="button black w-100 d-block edit_pick mb-2" @click="editing = true">Edit</button>
+                                                            <button name="pick_delete" class="button yellow w-100 d-block" @click="destroy">Delete</button>
+                                                        @else
+                                                            <p class="m-auto">Game Started</p>
+                                                        @endif
                                                     </div>
                                                 </div>
-                                            @endif
-                                        </div>
-                                        <div class="col-12 col-sm-3 d-flex align-content-center">
-                                            <div class="w-100 m-auto">
-                                                @if(strtotime($now) < strtotime($pick['game_time']))
-                                                    <button name="picks_edit" class="button black w-100 d-block edit_pick mb-2" @click="editing = true">Edit</button>
-                                                    <button name="pick_delete" class="button yellow w-100 d-block" @click="destroy">Delete</button>
-                                                @else
-                                                    <p class="m-auto">Game Started</p>
-                                                @endif
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div><!-- col-12 -->
-                        </div><!-- pick_row -->
+                                    </div><!-- col-12 -->
+                                </div><!-- pick_row -->
 
-                    </pick>
+                            </pick>
 
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
             @endif
 

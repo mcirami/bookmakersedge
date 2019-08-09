@@ -26,14 +26,7 @@
                             <h2 class="text-uppercase mb-4">THERE IS NO SUCH THING AS A LOCK!</h2>
                             <h2 class="mb-4 sub_title">Don’t buy the bullshit, winning is about longterm success!</h2>
                             <div style="width:50%;height:0;padding-bottom:25%;position:relative; margin: 0 auto;"><iframe src="https://giphy.com/embed/mQvZiYEB2elvq" width="100%" height="100%" style="position:absolute; left:0; margin: 0 auto;" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p></p>
-                            <h3><a class="text_link" href="/register">Signup NOW</a> and Get 7 Free Days</h3>
-                            <div class="d-flex justify-content-center mb-5">
-                                <h4 class="mr-3">Winner</h4>
-                                <img class="mr-3 checkmark my-auto" src="<?php echo asset('images/check.png'); ?>" alt="">
-                                <h4 class="mr-3">Winner</h4>
-                                <img class="mr-3 checkmark my-auto" src="<?php echo asset('images/check.png'); ?>" alt="">
-                                <h4>Chicken Dinner</h4>
-                            </div>
+                            <h3 class="mb-5"><a class="text_link" href="/register">Signup NOW</a> and Get 7 Free Days</h3>
                             <div class="button_wrap">
                                 <a class="button yellow" href="/register">Join Now For Free!</a>
                             </div>
