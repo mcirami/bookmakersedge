@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
-use App\Plan;
 use Laravel\Cashier\Billable;
 
 class UserController extends Controller
@@ -13,8 +12,12 @@ class UserController extends Controller
 	 * Show the register new user page
 	 *
 	 */
-	public function register() {
-		return view('guest.register');
+	public function freeRegister() {
+		return view('guest.free-register');
+	}
+
+	public function subscriptionRegister() {
+		return view('guest.subscription-register');
 	}
 
 	/**

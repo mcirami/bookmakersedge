@@ -15,7 +15,7 @@
                             <a class="nav-link @if(Route::currentRouteName() == "guest.home") active @endif" href="/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @if(Route::currentRouteName() == "Register Free Now") active @endif" href="/register">Sign Up Free</a>
+                            <a class="nav-link @if(Route::currentRouteName() == "Register Free Now") active @endif" href="/free-register">Sign Up Free</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link  @if(Route::currentRouteName() == "login") active @endif" href="/login">Login</a>

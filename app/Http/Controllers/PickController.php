@@ -43,7 +43,7 @@ class PickController extends Controller
 
 	}
 
-	public function update(Request $request, PickService $update, Pick $pick) {
+	public function update(Request $request, PickService $updatePick, Pick $pick) {
 		//$requests = $request->all();
 
 		try {
@@ -55,10 +55,11 @@ class PickController extends Controller
 				],
 				'line' => 'required|string|max:255',
 				'game_time' => 'required|string|max:255',
-				'comment' => 'sometimes|nullable|string|max:255'
+				'comment' => 'sometimes|nullable|string|max:255',
+				'grade' => 'sometimes|nullable|string|max:255'
 			]);
 
-			$update->updatePick($request, $pick);
+			$updatePick->updatePick($request, $pick);
 
 		} catch(\Exception $e) {
 
@@ -73,11 +74,11 @@ class PickController extends Controller
 
 		$user = Auth::user();
 
-		//$userRegisterDate = $user['created_at'];
+		$userRegisterDate = $user['created_at'];
 
-		//if($user->hasRole('subscriber') && $user['free_trial'] == "1" && strtotime($userRegisterDate) < strtotime('-7 days')) {
-		//	return redirect('https://jvax157.pay.clickbank.net/?cbitems=1');
-		//} else {
+		if($user->hasRole('subscriber') && $user['free_trial'] == "yes" && strtotime($userRegisterDate) < strtotime('-7 days')) {
+			return redirect('/expired');
+		} else {
 			$distinctDays = Pick::distinct()->orderBy( 'day', 'desc' )->whereNotNull( 'grade' )->get( [ 'day' ] );
 			$daysAgo      = Carbon::now()->subDays( 22 );
 			foreach ( $distinctDays as $key => $day ) {
@@ -92,12 +93,12 @@ class PickController extends Controller
 			                                            'distinctDays' => $distinctDays,
 			                                            'daysAgo'      => $daysAgo
 			] );
-		//}
+		}
 	}
 
 	public function grade() {
 
-		$dayMin = Carbon::now()->subDays( 2 );
+		$dayMin = Carbon::now()->subDays( 22 );
 
 		$distinctDays = Pick::distinct()->orderBy('day', 'desc')->where
 		(function($q) {
@@ -116,27 +117,12 @@ class PickController extends Controller
 		return view('member.picks.grade')->with(['picks' => $picks, 'distinctDays' => $distinctDays]);
 	}
 
-	public function updateGrade(Request $request, Pick $pick, PickService $picks) {
-
-		$picks->updateGrade($request, $pick);
-
-		//return redirect()->back()->with('flash', 'Your Pick Grade Was Updated' );
-
-	}
-
 	public function destroy(Pick $pick) {
 
-			$pick->delete();
+		$pick->delete();
 
-			if (request()->expectsJson()) {
-				return response(['status' => 'Pick has been deleted']);
-			}
-
-
-		/*if (request()->expectsJson()) {
-			return response(['status' => 'Pick deleted']);
-		}*/
-
-		//return back()->with('success', 'Your Pick Was Deleted' );
+		if (request()->expectsJson()) {
+			return response(['status' => 'Pick has been deleted']);
+		}
 	}
 }

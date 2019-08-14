@@ -86,6 +86,14 @@
 			@include media($mobile) {
 				padding-top: 10px;
 			}
+
+			&.inactive {
+				padding-top: 80px;
+
+				@include media($mobile) {
+					padding-top: 40px;
+				}
+			}
 		}
 
 		h2 {

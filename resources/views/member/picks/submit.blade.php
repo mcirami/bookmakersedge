@@ -28,7 +28,7 @@
                                     <div class="col-12">
                                         <div v-if="editing">
 
-                                            <div class="row pick_row text-left">
+                                            <div class="row text-left">
 
                                                 <div class="col-12 col-md-3">
                                                     <label for="sport" class="col-form-label">{{ __('Sport') }}</label>
@@ -69,8 +69,8 @@
                                                 </div>
                                                 <div class="col-12 submit_button_wrap mt-4">
 
-                                                    <button name="picks_update" class="button red d-block float-left" @click="update">Update</button>
-                                                    <button name="cancel_update" class="button yellow d-block float-right" @click="cancel">Cancel</button>
+                                                    <button name="picks_update" class="button red update_pick d-block float-left mb-2 mb-md-0" @click="update">Update</button>
+                                                    <button name="cancel_update" class="button yellow cancel_update d-block float-right" @click="cancel">Cancel</button>
 
                                                 </div>
                                             </div>
@@ -79,7 +79,7 @@
                                         </div><!-- if editing -->
                                         <div v-else>
                                             <div class="row">
-                                                <div class="col-12 col-sm-9">
+                                                <div class="col-12">
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <h4 class="font-weight-bold">Submitted at: {{$pick['updated_at']->format('h:i')}} EST </h4>
@@ -96,7 +96,8 @@
                                                             <p class="text-center text-sm-left" v-text="line"></p>
                                                         </div>
                                                         <div class="col-4">
-                                                            <p class="text-center text-sm-left"><span v-text="game_time"></span> EST</p>
+                                                            <p class="text-center text-sm-left">
+                                                                <span v-text="game_time"></span> EST</p>
                                                         </div>
                                                     </div>
                                                     @if($pick['comment'])
@@ -107,15 +108,13 @@
                                                         </div>
                                                     @endif
                                                 </div>
-                                                <div class="col-12 col-sm-3 d-flex align-content-center">
-                                                    <div class="w-100 m-auto">
-                                                        @if(strtotime($now) < strtotime($pick['game_time']))
-                                                            <button name="picks_edit" class="button black w-100 d-block edit_pick mb-2" @click="editing = true">Edit</button>
-                                                            <button name="pick_delete" class="button yellow w-100 d-block" @click="destroy">Delete</button>
-                                                        @else
-                                                            <p class="m-auto">Game Started</p>
-                                                        @endif
-                                                    </div>
+                                                <div class="col-12">
+                                                    @if(strtotime($now) < strtotime($pick['game_time']))
+                                                        <button name="picks_edit" class="button black edit_pick float-left mb-2 mb-md-0" @click="editing = true">Edit</button>
+                                                        <button name="pick_delete" class="button yellow delete_pick float-right" @click="destroy">Delete</button>
+                                                    @else
+                                                        <p class="m-auto">Game Started</p>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>

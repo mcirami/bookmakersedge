@@ -19,15 +19,16 @@ Route::group(['middleware' => 'web'], function() {
 	Route::get('logout', 'Auth\LoginController@logout');
 	Route::get('privacy-policy', 'GuestController@privacy')->name('Privacy Policy');
 	Route::get('terms-of-service', 'GuestController@terms')->name('Terms Of Service');
+	Route::get('thank-you', 'GuestController@thankYou')->name('Thank You');
 });
 
 Route::group(['middleware' => 'guest'], function() {
 	Route::get('/', 'HomeController@index')->name('guest.home');
-	Route::get('register', 'UserController@register')->name('Register Free Now');
 	Route::get('our-method', 'GuestController@method')->name('Our Method');
-	Route::get('thank-you', 'GuestController@thankYou')->name('Thank You');
-	Route::post('free-register', 'SubscriptionController@registerNewFreeUser');
-	Route::any('ipn', 'SubscriptionController@subscribeClickBankUser');
+	Route::get('free-register', 'UserController@freeRegister')->name('Register Free Now');
+	Route::post('free-register', 'SubscriptionController@createNewFreeUser');
+	Route::get('subscription-register', 'UserController@subscriptionRegister')->name('Subscribe Now');
+	Route::post('subscription-register', 'SubscriptionController@createClickBankUser');
 });
 
 Route::group(['middleware' => 'auth'], function(){
@@ -42,6 +43,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('reports', 'PickController@reports')->name('Reports');
 	Route::get('our-method-member', 'UserController@method')->name('Our Method');
 	Route::post('subscribe', 'SubscriptionController@subscribe');
+	Route::post('reinstate-subscription', 'SubscriptionController@reinstateSubscription');
 });
 
 Route::group(['middleware' => 'provider'], function(){
@@ -50,8 +52,6 @@ Route::group(['middleware' => 'provider'], function(){
 	Route::patch('/submit-picks/{pick}/update', 'PickController@update');
 	Route::delete('/submit-picks/{pick}/delete', 'PickController@destroy');
 	Route::get('grade-picks', 'PickController@grade')->name('Grade Your Picks');
-	Route::patch('grade-picks/{pick}/update', 'PickController@updateGrade');
-	//Route::patch('grade-picks/{pick}/update', 'PickController@update');
 });
 
 

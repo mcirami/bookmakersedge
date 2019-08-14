@@ -232,6 +232,12 @@ input[type="text"], input[type="email"], input[type="password"], textarea, selec
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fae78c', endColorstr='#f3d438',GradientType=0 ); /* IE6-9 */
         }
 	}
+
+	&.edit_pick, &.delete_pick, &.update_pick, &.cancel_update {
+		@include media($mobile) {
+			width: 100%;
+		}
+	}
 }
 
 .page_content_home {
@@ -257,6 +263,7 @@ input[type="text"], input[type="email"], input[type="password"], textarea, selec
 		background: url('../images/home-hero2.jpg') no-repeat;
 		background-size: cover;
 		background-position: left;
+		padding-top: 50px;
 
 		&:before {
 			content: '';
@@ -266,6 +273,10 @@ input[type="text"], input[type="email"], input[type="password"], textarea, selec
 			left: 0;
 			width: 100%;
 			height: 100%;
+		}
+
+		.page_content_home {
+			padding-top: 0;
 		}
 	}
 }
@@ -285,4 +296,8 @@ input[type="text"], input[type="email"], input[type="password"], textarea, selec
 
 .invalid-feedback {
 	float: left;
+}
+
+[v-cloak] {
+	display:none;
 }

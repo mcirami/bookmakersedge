@@ -42,12 +42,15 @@ class GuestController extends Controller
 
 		$user = User::where('email', $email)->first();
 
-		if($user['free_trial'] == 1) {
-			$newAccount = false;
-		} else {
-			$newAccount = true;
-		}
+		$receipt = (isset($_GET['cbreceipt']) && $_GET['cbreceipt'] != "") ? $_GET['cbreceipt'] : "";
 
-		return view('guest.thank-you')->with(['name' => $name, 'email' => $email, 'newAccount' => $newAccount]);
+		$user->clickbank_receipt = $receipt;
+		$user->free_trial = "no";
+
+		$user->save();
+
+		auth()->login($user);
+
+		return view('guest.thank-you')->with(['name' => $name, 'email' => $email]);
 	}
 }

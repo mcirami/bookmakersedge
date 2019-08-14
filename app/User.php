@@ -17,7 +17,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-	protected $fillable = [ 'first_name', 'last_name', 'email', 'username', 'password', 'clickbank_receipt' ];
+	protected $fillable = [ 'first_name', 'last_name', 'email', 'username', 'password', 'clickbank_receipt', 'free_trial' ];
 
 	protected $guard_name = 'web';
 

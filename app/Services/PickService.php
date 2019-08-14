@@ -31,20 +31,11 @@ class PickService {
 
 	public function updatePick($request, $pick) {
 
-		//$pick = Pick::findOrFail($request['pick_id']);
-
 		$pick->sport = $request['sport'];
 		$pick->team = $request['team'];
 		$pick->line = $request['line'];
 		$pick->game_time = $request['game_time'];
 		$pick->comment = $request['comment'];
-
-		$pick->save();
-	}
-
-	public function updateGrade($request, $pick) {
-		//$pick = Pick::findOrFail($pick['id']);
-
 		$pick->grade = $request['grade'];
 
 		$pick->save();

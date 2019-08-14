@@ -20,13 +20,13 @@
 
                         {{ csrf_field() }}
 
-                        <h3 class="text-center">Complete the form to sign up for FREE!</h3>
+                        <h3 class="text-center">Complete the form to sign up FREE for 7 days!</h3>
 
                         <div class="form-group row">
                             <div class="col-md-6">
-                                <label for="first_name" class="col-form-label">{{ __('First Name') }} <sup>*</sup></label>
+                                <label for="first_name" class="col-form-label">{{ __('First Name') }}</label>
 
-                                <input id="first_name" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name" value="{{ old('first_name') }}" required autofocus>
+                                <input id="first_name" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name" value="{{ old('first_name') }}" autofocus>
 
                                 @if ($errors->has('first_name'))
                                     <span class="invalid-feedback">
@@ -35,9 +35,9 @@
                                 @endif
                             </div>
                             <div class="col-md-6">
-                                <label for="last_name" class="col-form-label">{{ __('Last Name') }} <sup>*</sup></label>
+                                <label for="last_name" class="col-form-label">{{ __('Last Name') }}</label>
 
-                                <input id="last_name" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{ old('last_name') }}" required autofocus>
+                                <input id="last_name" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{ old('last_name') }}"autofocus>
 
                                 @if ($errors->has('last_name'))
                                     <span class="invalid-feedback">
