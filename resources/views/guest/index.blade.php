@@ -26,21 +26,21 @@
                             <h2 class="text-uppercase mb-4">THERE IS NO SUCH THING AS A LOCK!</h2>
                             <h2 class="mb-4 sub_title">Don’t buy the bullshit, winning is about longterm success!</h2>
                             <div style="width:50%;height:0;padding-bottom:25%;position:relative; margin: 0 auto;"><iframe src="https://giphy.com/embed/mQvZiYEB2elvq" width="100%" height="100%" style="position:absolute; left:0; margin: 0 auto;" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p></p>
-                            <h3 class="mb-5"><a class="text_link" href="/free-register">Signup NOW</a> and Get 7 Free Days</h3>
+                            <h3 class="mb-5"><a class="text_link" href="/free-register/">Signup NOW</a> and Get 7 Free Days</h3>
                             <div class="button_wrap">
-                                <a class="button yellow" href="/free-register">Join Now For Free!</a>
+                                <a class="button yellow" href="/free-register/">Join Now For Free!</a>
                             </div>
                         </div>
                         <div class="col-12 col-md-5 mt-5 mt-md-0">
                             <div class="button_content">
-                                <a class="row no-gutters cta_button" href="/free-register">
+                                <a class="row no-gutters cta_button" href="/free-register/">
                                     <span class="col-6 text-left my-auto">7-Day Access</span>
                                     <span class="col-2 text-center small my-auto">One Time<br>Promo</span>
                                     <span class="amount col-2 text-right my-auto pr-3">FREE</span>
                                     <span class="cta col-2 text-center">CLICK<br>HERE!</span>
                                 </a>
                                 <p>Free for 7 days then you will be asked to upgrade to keep access.</p>
-                                <a class="row no-gutters cta_button" href="/subscription-register">
+                                <a class="row no-gutters cta_button" href="/subscription-register/">
                                     <span class="col-6 text-left my-auto">30-Day Access</span>
                                     <span class="amount col-4 text-right my-auto pr-3">$50</span>
                                     <span class="cta col-2 text-center">CLICK<br>HERE!</span>
@@ -107,8 +107,8 @@
                         <p>My partner and I are retired bookmakers with <span>over 70 years combined experience involving sports gambling.</span></p>
                         <p>We chose to get back in the game by offering this service. We’ve pretty much seen it all!</p>
                         <p>It’s a much different business these days compared to just 10 or 15 years ago.  The Internet has enabled line moves to occur almost simultaneously across the casinos and sports books.  Placing wagers can be a 24/7 proposition.  There are more games (many with teams you haven’t even heard of), more available lines, prop bets, even in-game wagering.  Hell, this year there were over 400 prop bets on the Super Bowl.  400!!  We have witnessed hot/cold streaks, winning/losing seasons, good/bad years.  But one thing hasn’t changed, and that’s what it takes to win. </p>
-                        <p>You were curious, you’ve come this far, so take advantage of our <a href="/free-register">FREE 7 DAY TRIAL</a> and convince yourself.  You will be able to login and get access to our picks immediately.  Picks are submitted daily.  In addition to the picks, you will be able to follow a revolving 21 day history, with win percentage, and this is a no-strings attached offer.  If you like what you see, take the next step and sign up for our introductory rate at just $50 for 30 days.  So what are you waiting for?  Sign on and get started now.  <span>Becoming a winner is in your sights.</span> </p>
-                        <a class="text-uppercase" href="/free-register">JOIN NOW TO LEARN MORE ABOUT OUR EXPERT METHOD AND IDEOLOGY</a>
+                        <p>You were curious, you’ve come this far, so take advantage of our <a href="/free-register/">FREE 7 DAY TRIAL</a> and convince yourself.  You will be able to login and get access to our picks immediately.  Picks are submitted daily.  In addition to the picks, you will be able to follow a revolving 21 day history, with win percentage, and this is a no-strings attached offer.  If you like what you see, take the next step and sign up for our introductory rate at just $50 for 30 days.  So what are you waiting for?  Sign on and get started now.  <span>Becoming a winner is in your sights.</span> </p>
+                        <a class="text-uppercase" href="/free-register/">JOIN NOW TO LEARN MORE ABOUT OUR EXPERT METHOD AND IDEOLOGY</a>
                     </div>
                 </div>
             </div>

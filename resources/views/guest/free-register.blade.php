@@ -101,7 +101,7 @@
                                     <div id="form_submit_span" class="mb-2">
                                         <button name="payment_submit" id="payment_submit" class="button red">Sign Up</button>
                                     </div>
-                                    <p class="terms">By clicking "Submit and Check Out" you agree to our <a target="_blank" href="/privacy-policy">Privacy Policy</a>, <a target="_blank" href="/terms-of-service">Terms of Service</a>.
+                                    <p class="terms">By clicking "Sign Up" you agree to our <a target="_blank" href="/privacy-policy">Privacy Policy</a> & <a target="_blank" href="/terms-of-service">Terms of Service</a>.
                                 </div>
                             </div>
                         </div>

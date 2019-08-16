@@ -33,6 +33,9 @@ class HomeController extends Controller
 		    }
 	    }
 
+	    $clickid = (isset($_GET['clickid']) && $_GET['clickid'] != "") ? $_GET["clickid"] : "";
+
+	    setcookie("bookmakers-clickid", true, time() + (60 * 20));
 
         return view('guest.index')->with([ 'picks' => $picks]);
     }

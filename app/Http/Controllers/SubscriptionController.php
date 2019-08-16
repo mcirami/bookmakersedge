@@ -14,11 +14,53 @@ class SubscriptionController extends Controller
 
 	use Billable;
 
+	/**
+	 * Show the register free new user page
+	 *
+	 */
+	public function freeRegister() {
+
+		return view('guest.free-register');
+	}
+
 	public function createNewFreeUser(RegistrationRequest $request, UserService $user) {
 
 		$user->createFreeUser($request);
 
+		if ( isset( $_COOKIE['bookmakers-clickid'] ) ) {
+			$clickid = $_COOKIE['bookmakers-clickid'];
+
+			$ch = curl_init();
+
+			$path = "http://trafficmasters.trackyourstats.com/?uid=tfms&clickid=" . $clickid;
+
+			curl_setopt($ch, CURLOPT_URL, $path);
+
+			curl_setopt($ch, CURLOPT_POST, true);
+
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $clickid);
+
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+			$response = curl_exec($ch);
+
+			curl_close($ch);
+
+			$decode = json_decode($response, true);
+		}
+
 		return redirect( '/member-home' );
+	}
+
+	/**
+	 * Show the subscribe for 30 days new user page
+	 *
+	 */
+	public function subscriptionRegister() {
+
+		$clickid = (isset($_GET['clickid']) && $_GET['clickid'] != "") ? $_GET["clickid"] : "";
+
+		return view('guest.subscription-register')->with(['clickid' => $clickid]);
 	}
 
 	public function createClickBankUser(RegistrationRequest $request, UserService $createUser) {
@@ -31,45 +73,43 @@ class SubscriptionController extends Controller
 		$name = $firstName . " " . $lastName;
 		$email = $user->email;
 
-		return redirect('http://1.jvax157.pay.clickbank.net/?cbskin=24677&name=' . $name . '&email=' . $email);
-	}
+		if ( isset( $_COOKIE['bookmakers-clickid'] ) ) {
+			$clickid = $_COOKIE['bookmakers-clickid'];
 
-	public function updateUserInfo(UpdateInfoRequest $request, UserService $user) {
+			$ch = curl_init();
 
-		$user->updateUser($request);
+			$path = "http://trafficmasters.trackyourstats.com/?uid=tfms&clickid=" . $clickid;
 
-		return redirect()->back()->with('success', 'Your Account Information has Been updated' );
-	}
+			curl_setopt($ch, CURLOPT_URL, $path);
 
-	public function changeUserPassword(Request $request, UserService $user) {
+			curl_setopt($ch, CURLOPT_POST, true);
 
-		$request->validate( [
-			'currentPassword' => 'required',
-			'new_password'    => 'min:6|required_with:new_password_confirm|same:new_password_confirm',
-			'new_password_confirm' => 'required'
-		]);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $clickid);
 
-		$return = $user->changePassword($request);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-		if ($return == "success" ) {
-			return redirect()->back()->with('success', 'Your Password Has Been Changed' );
-		} else {
-			return redirect()->back()->with('error', $return );
+			$response = curl_exec($ch);
+
+			curl_close($ch);
+
+			$decode = json_decode($response, true);
 		}
+
+		return redirect('http://1.jvax157.pay.clickbank.net/?cbskin=24677&name=' . $name . '&email=' . $email);
 	}
 
 	public function reinstateSubscription() {
 
 		$user = Auth::user();
-
 		$receipt =  $user['clickbank_receipt'];
 
-		$host = "https://api.clickbank.com/";
-		$path = "rest/1.3/orders2/". $receipt . "/reinstate";
+		//$host = "https://api.clickbank.com/";
+		$path = "https://api.clickbank.com/rest/1.3/orders2/". $receipt . "/reinstate";
+
 		$ch = curl_init();
 
 		// endpoint url
-		curl_setopt($ch, CURLOPT_URL, $host . $path);
+		curl_setopt($ch, CURLOPT_URL, $path);
 
 		curl_setopt($ch, CURLOPT_HEADER, true);
 
@@ -79,15 +119,15 @@ class SubscriptionController extends Controller
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
 		// set data to be send
-		//curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($receipt));
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $receipt);
 
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
 		// set header
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json", "Authorization: DEV-CD1T1C38T9B36CPBK4H1MCIF32V9OOK0:API-SQ6474OA2QRDEUQHMU9H0NOMVBJFBQ9E"));
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json", "Authorization: DEV-CD1T1C38T9B36CPBK4H1MCIF32V9OOK0:API-PCTBN1REOP5H67Q0BL2NCLDK38R8LVMK"));
 
 		// return transfer as string
-		//curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
 		$response = curl_exec($ch);
 		curl_close($ch);

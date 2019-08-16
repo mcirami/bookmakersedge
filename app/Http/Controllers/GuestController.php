@@ -51,6 +51,28 @@ class GuestController extends Controller
 
 		auth()->login($user);
 
+		if ( isset( $_COOKIE['bookmakers-clickid'] ) ) {
+			$clickid = $_COOKIE['bookmakers-clickid'];
+
+			$ch = curl_init();
+
+			$path = "http://trafficmasters.trackyourstats.com/?uid=tfms&clickid=" . $clickid;
+
+			curl_setopt($ch, CURLOPT_URL, $path);
+
+			curl_setopt($ch, CURLOPT_POST, true);
+
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $clickid);
+
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+			$response = curl_exec($ch);
+
+			curl_close($ch);
+
+			$decode = json_decode($response, true);
+		}
+
 		return view('guest.thank-you')->with(['name' => $name, 'email' => $email]);
 	}
 }

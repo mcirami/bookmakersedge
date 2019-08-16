@@ -25,9 +25,9 @@ Route::group(['middleware' => 'web'], function() {
 Route::group(['middleware' => 'guest'], function() {
 	Route::get('/', 'HomeController@index')->name('guest.home');
 	Route::get('our-method', 'GuestController@method')->name('Our Method');
-	Route::get('free-register', 'UserController@freeRegister')->name('Register Free Now');
+	Route::get('free-register', 'SubscriptionController@freeRegister')->name('Register Free Now');
 	Route::post('free-register', 'SubscriptionController@createNewFreeUser');
-	Route::get('subscription-register', 'UserController@subscriptionRegister')->name('Subscribe Now');
+	Route::get('subscription-register', 'SubscriptionController@subscriptionRegister')->name('Subscribe Now');
 	Route::post('subscription-register', 'SubscriptionController@createClickBankUser');
 });
 
@@ -37,9 +37,9 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('expired', 'HomeController@expiredTrial');
 	Route::get('membership-account', 'UserController@index')->name('Account');
 	Route::get('membership-account/update', 'UserController@update')->name('Update Account Info');
-	Route::post('account/update', 'SubscriptionController@updateUserInfo');
+	Route::post('account/update', 'UserController@updateUserInfo');
 	Route::get('membership-account/change-password', 'UserController@changePassword')->name('Change Password');
-	Route::post('account/change-password', 'SubscriptionController@changeUserPassword');
+	Route::post('account/change-password', 'UserController@changeUserPassword');
 	Route::get('reports', 'PickController@reports')->name('Reports');
 	Route::get('our-method-member', 'UserController@method')->name('Our Method');
 	Route::post('subscribe', 'SubscriptionController@subscribe');
