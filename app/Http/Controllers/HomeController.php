@@ -45,50 +45,14 @@ class HomeController extends Controller
 	 *
 	 */
 	public function member() {
+
 		$user = Auth::user();
 
-        $receipt =  $user['clickbank_receipt'];
+		$distinctDays = Pick::distinct()->orderBy('day', 'desc')->get(['day']);
+		$picks = Pick::get();
+		$todaysDate = Carbon::now()->format('m-d-Y');
 
-        if ($receipt != null) {
-	        $ch = curl_init();
-	        curl_setopt($ch, CURLOPT_URL, "https://api.clickbank.com/rest/1.3/orders2/" . $receipt);
-	        curl_setopt($ch, CURLOPT_HEADER, true);
-	        curl_setopt($ch, CURLOPT_HTTPGET, true);
-	        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-	        curl_setopt($ch, CURLOPT_HEADER, 0);
-	        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json", "Authorization: DEV-CD1T1C38T9B36CPBK4H1MCIF32V9OOK0:API-SQ6474OA2QRDEUQHMU9H0NOMVBJFBQ9E"));
-	        $result = curl_exec($ch);
-	        curl_close($ch);
-
-	        $decode = json_decode($result, true);
-	        $status = strtolower($decode['orderData']['lineItemData']['status']);
-
-	        if ($status == "active") {
-		        $distinctDays = Pick::distinct()->orderBy('day', 'desc')->get(['day']);
-		        $picks = Pick::get();
-		        $todaysDate = Carbon::now()->format('m-d-Y');
-
-		        return view('member.home')->with(['picks' => $picks, 'distinctDays' => $distinctDays, 'user' => $user, 'date' => $todaysDate]);
-	        } else {
-		        return redirect('/inactive');
-	        }
-
-
-        } else {
-
-	        $userRegisterDate = $user['created_at'];
-
-	        if($user->hasRole('subscriber') && strtotime($userRegisterDate) < strtotime('-7 days') && $user['free_trial'] == "yes") {
-		        	return redirect('/expired');
-            } else{
-		        $distinctDays = Pick::distinct()->orderBy('day', 'desc')->get(['day']);
-		        $picks = Pick::get();
-		        $todaysDate = Carbon::now()->format('m-d-Y');
-
-		        return view('member.home')->with(['picks' => $picks, 'distinctDays' => $distinctDays, 'user' => $user, 'date' => $todaysDate]);
-            }
-        }
+		return view('member.home')->with(['picks' => $picks, 'distinctDays' => $distinctDays, 'user' => $user, 'date' => $todaysDate]);
 	}
 
 	public function inactive() {

@@ -32,18 +32,21 @@ Route::group(['middleware' => 'guest'], function() {
 });
 
 Route::group(['middleware' => 'auth'], function(){
-	Route::get('member-home', 'HomeController@member')->name('Home Page');
 	Route::get('inactive', 'HomeController@inactive');
 	Route::get('expired', 'HomeController@expiredTrial');
+	Route::get('our-method-member', 'UserController@method')->name('Our Method');
+	Route::post('subscribe', 'SubscriptionController@subscribe');
+	Route::post('reinstate-subscription', 'SubscriptionController@reinstateSubscription');
+});
+
+Route::group(array('middleware' => ['auth', 'isActive']), function(){
+	Route::get('member-home', 'HomeController@member')->name('Home Page');
 	Route::get('membership-account', 'UserController@index')->name('Account');
 	Route::get('membership-account/update', 'UserController@update')->name('Update Account Info');
 	Route::post('account/update', 'UserController@updateUserInfo');
 	Route::get('membership-account/change-password', 'UserController@changePassword')->name('Change Password');
 	Route::post('account/change-password', 'UserController@changeUserPassword');
 	Route::get('reports', 'PickController@reports')->name('Reports');
-	Route::get('our-method-member', 'UserController@method')->name('Our Method');
-	Route::post('subscribe', 'SubscriptionController@subscribe');
-	Route::post('reinstate-subscription', 'SubscriptionController@reinstateSubscription');
 });
 
 Route::group(['middleware' => 'provider'], function(){
@@ -53,5 +56,7 @@ Route::group(['middleware' => 'provider'], function(){
 	Route::delete('/submit-picks/{pick}/delete', 'PickController@destroy');
 	Route::get('grade-picks', 'PickController@grade')->name('Grade Your Picks');
 });
+
+
 
 

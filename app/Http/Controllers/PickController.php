@@ -71,20 +71,13 @@ class PickController extends Controller
 
 	public function reports(PickFilters $filters){
 
-		$user = Auth::user();
+		$distinctDays = Pick::distinct()->filter($filters);
+		$distinctDays = $distinctDays->get(['day']);
 
-		$userRegisterDate = $user['created_at'];
+		$picks = Pick::whereNotNull('grade')->get();
 
-		if($user->hasRole('subscriber') && $user['free_trial'] == "yes" && strtotime($userRegisterDate) < strtotime('-7 days')) {
-			return redirect('/expired');
-		} else {
-			$distinctDays = Pick::distinct()->filter($filters);
-			$distinctDays = $distinctDays->get(['day']);
+		return view( 'member.picks.reports' )->with( [ 'picks' => $picks, 'distinctDays' => $distinctDays ] );
 
-			$picks = Pick::whereNotNull('grade')->get();
-
-			return view( 'member.picks.reports' )->with( [ 'picks' => $picks, 'distinctDays' => $distinctDays ] );
-		}
 	}
 
 	public function grade(PickFilters $filters) {
