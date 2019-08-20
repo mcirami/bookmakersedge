@@ -31,7 +31,7 @@
                             <form method="post" action="{{ url('/reinstate-subscription') }}">
                                 {{ csrf_field() }}
 
-                                <button class="button yellow float-left">Click Here To Restart Your Membership!</button>
+                                <button class="button yellow">Click Here To Restart Your Membership!</button>
                             </form>
 
                             {{--<a class="button yellow" href="https://api.clickbank.com/rest/1.3/orders2/{{$receipt}}/reinstate">Click Here To Restart Your Membership!</a>--}}

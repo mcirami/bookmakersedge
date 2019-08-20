@@ -15,12 +15,12 @@
                 </div>
             @endif
 
-            @if(!$todaysPicks->isEmpty())
+            @if(!$picks->isEmpty())
                 <div class="form_wrapper mb-5 row update_picks_form">
                     <div class="col-12">
                         <h3 class="text-center w-100 pb-3">Picks You Submitted Today</h3>
 
-                        @foreach($todaysPicks as $pick)
+                        @foreach($picks as $pick)
 
                             <pick :attributes="{{$pick}}" inline-template v-cloak>
 

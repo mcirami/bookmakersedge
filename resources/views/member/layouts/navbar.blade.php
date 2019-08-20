@@ -17,12 +17,12 @@
                         </li>
                         @role('provider')
                             <li class="nav-item">
-                                <a class="nav-link @if(Route::currentRouteName() == "Make Your Picks") active @endif" href="/submit-picks">Submit Picks</a>
+                                <a class="nav-link @if(Route::currentRouteName() == "Make Your Picks") active @endif" href="/submit-picks/?today=1">Submit Picks</a>
                             </li>
                         @endrole
                         @role('provider')
                             <li class="nav-item">
-                                <a class="nav-link @if(Route::currentRouteName() == "Grade Your Picks") active @endif" href="/grade-picks">Grade Picks</a>
+                                <a class="nav-link @if(Route::currentRouteName() == "Grade Your Picks") active @endif" href="/grade-picks/?gdays=22">Grade Picks</a>
                             </li>
                         @endrole
                         @role('subscriber')
@@ -31,7 +31,7 @@
                             </li>
                         @endrole
                         <li class="nav-item">
-                            <a class="nav-link  @if(Route::currentRouteName() == "Reports") active @endif" href="/reports">Reports</a>
+                            <a class="nav-link  @if(Route::currentRouteName() == "Reports") active @endif" href="/reports/?rdays=22">Reports</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link  @if(Route::currentRouteName() == "Account") active @endif" href="/membership-account">Account</a>

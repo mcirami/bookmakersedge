@@ -15,11 +15,11 @@
                     </div>
                 @endif
 
-                <div class="content_wrap row form_wrapper update_picks_form d-inline-block @if($distinctDays->isEmpty()) empty @endif">
+                <div class="content_wrap row form_wrapper update_picks_form d-inline-block {{--@if($distinctDays->isEmpty()) empty @endif--}}">
 
                     <div class="col-12">
 
-                        @if(!$distinctDays->isEmpty())
+                        {{--@if(!$distinctDays->isEmpty())--}}
 
                             <h3 class="text-center pb-3 mb-3 sub_title">Grade your picks below and submit for user to see</h3>
 
@@ -155,9 +155,9 @@
 
                             @endforeach
 
-                        @else
+                       {{-- @else
                             <h3 class="text-center">There are no picks to grade</h3>
-                        @endif
+                        @endif--}}
 
                     </div>
                 </div>

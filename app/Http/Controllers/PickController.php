@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\PickFilters;
 use Illuminate\Http\Request;
 use App\Http\Requests\PicksRequest;
 use App\Services\PickService;
@@ -16,21 +17,20 @@ class PickController extends Controller
 	 * Show the submit picks page
 	 *
 	 */
-	public function index() {
-		$userID = Auth::user()->getAuthIdentifier();
+	public function index(PickFilters $filters) {
 
-		$today = Carbon::today();
-		$todaysPicks = Pick::where('day', $today)->where('user_id', $userID)->get();
+
+		$picks = Pick::latest()->filter($filters);
+		$picks = $picks->get();
 
 		$now = Carbon::now()->format('h:i A');
-
 		$lastPick = Pick::get()->last();
 
 		if (strtotime($lastPick->day) != strtotime(Carbon::today())) {
 			$lastPick = null;
 		}
 
-		return view('member.picks.submit')->with(['todaysPicks' => $todaysPicks, 'now' => $now, 'lastPick' => $lastPick]);
+		return view('member.picks.submit')->with(['picks' => $picks, 'now' => $now, 'lastPick' => $lastPick]);
 	}
 
 	public function saveNewPicks(PicksRequest $request, PickService $picks) {
@@ -44,7 +44,6 @@ class PickController extends Controller
 	}
 
 	public function update(Request $request, PickService $updatePick, Pick $pick) {
-		//$requests = $request->all();
 
 		try {
 			$request->validate([
@@ -70,7 +69,7 @@ class PickController extends Controller
 
 	}
 
-	public function reports(){
+	public function reports(PickFilters $filters){
 
 		$user = Auth::user();
 
@@ -79,39 +78,19 @@ class PickController extends Controller
 		if($user->hasRole('subscriber') && $user['free_trial'] == "yes" && strtotime($userRegisterDate) < strtotime('-7 days')) {
 			return redirect('/expired');
 		} else {
-			$distinctDays = Pick::distinct()->orderBy( 'day', 'desc' )->whereNotNull( 'grade' )->get( [ 'day' ] );
-			$daysAgo      = Carbon::now()->subDays( 22 );
-			foreach ( $distinctDays as $key => $day ) {
-				if ( strtotime( $day->day ) < strtotime( $daysAgo ) ||  strtotime( $day->day ) == strtotime(Carbon::today()) ) {
-					$distinctDays->forget( $key );
-				}
-			}
+			$distinctDays = Pick::distinct()->filter($filters);
+			$distinctDays = $distinctDays->get(['day']);
 
 			$picks = Pick::whereNotNull('grade')->get();
 
-			return view( 'member.picks.reports' )->with( [ 'picks'        => $picks,
-			                                            'distinctDays' => $distinctDays,
-			                                            'daysAgo'      => $daysAgo
-			] );
+			return view( 'member.picks.reports' )->with( [ 'picks' => $picks, 'distinctDays' => $distinctDays ] );
 		}
 	}
 
-	public function grade() {
+	public function grade(PickFilters $filters) {
 
-		$dayMin = Carbon::now()->subDays( 22 );
-
-		$distinctDays = Pick::distinct()->orderBy('day', 'desc')->where
-		(function($q) {
-			$dayMax = Carbon::now()->addDays( 2 );
-			$q->where('grade', NULL)
-				->orWhereDate('day', '<=', $dayMax );
-		})->get(['day']);
-
-		foreach($distinctDays as $key => $day) {
-			if ( strtotime( $day->day ) < strtotime( $dayMin ) ) {
-				$distinctDays->forget( $key );
-			}
-		}
+		$distinctDays = Pick::distinct()->filter($filters);
+		$distinctDays = $distinctDays->get(['day']);
 
 		$picks = Pick::get();
 		return view('member.picks.grade')->with(['picks' => $picks, 'distinctDays' => $distinctDays]);

@@ -27,29 +27,11 @@ class SubscriptionController extends Controller
 
 		$user->createFreeUser($request);
 
-		if ( isset( $_COOKIE['bookmakers-clickid'] ) ) {
-			$clickid = $_COOKIE['bookmakers-clickid'];
+		$this->trackingPostback();
 
-			$ch = curl_init();
+		$firePixel = "true";
 
-			$path = "http://trafficmasters.trackyourstats.com/?uid=tfms&clickid=" . $clickid;
-
-			curl_setopt($ch, CURLOPT_URL, $path);
-
-			curl_setopt($ch, CURLOPT_POST, true);
-
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $clickid);
-
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-			$response = curl_exec($ch);
-
-			curl_close($ch);
-
-			$decode = json_decode($response, true);
-		}
-
-		return redirect( '/member-home' );
+		return redirect( '/member-home' )->with(['firePixel' => $firePixel]);
 	}
 
 	/**
@@ -58,9 +40,7 @@ class SubscriptionController extends Controller
 	 */
 	public function subscriptionRegister() {
 
-		$clickid = (isset($_GET['clickid']) && $_GET['clickid'] != "") ? $_GET["clickid"] : "";
-
-		return view('guest.subscription-register')->with(['clickid' => $clickid]);
+		return view('guest.subscription-register');
 	}
 
 	public function createClickBankUser(RegistrationRequest $request, UserService $createUser) {
@@ -73,6 +53,22 @@ class SubscriptionController extends Controller
 		$name = $firstName . " " . $lastName;
 		$email = $user->email;
 
+		$this->trackingPostback();
+
+		return redirect('http://1.jvax157.pay.clickbank.net/?cbskin=24677&name=' . $name . '&email=' . $email);
+	}
+
+	public function reinstateSubscription() {
+
+		$user = Auth::user();
+		$receipt =  $user['clickbank_receipt'];
+
+		$this->reinstateSubCurl($receipt);
+
+	}
+
+	protected function trackingPostback() {
+
 		if ( isset( $_COOKIE['bookmakers-clickid'] ) ) {
 			$clickid = $_COOKIE['bookmakers-clickid'];
 
@@ -93,15 +89,14 @@ class SubscriptionController extends Controller
 			curl_close($ch);
 
 			$decode = json_decode($response, true);
-		}
 
-		return redirect('http://1.jvax157.pay.clickbank.net/?cbskin=24677&name=' . $name . '&email=' . $email);
+			echo "<script type=\"text/javascript\">
+				new Image().src=\"https://cn.rtclx.com/conv/?v=NjA4MDIyMWUzZTA1ZjkwZmE5NTc5MmVmOThkMTk3YmE6MjU0MTM%3D&p=4229&r=\";
+				</script>";
+		}
 	}
 
-	public function reinstateSubscription() {
-
-		$user = Auth::user();
-		$receipt =  $user['clickbank_receipt'];
+	protected function reinstateSubCurl($receipt) {
 
 		//$host = "https://api.clickbank.com/";
 		$path = "https://api.clickbank.com/rest/1.3/orders2/". $receipt . "/reinstate";
@@ -127,7 +122,7 @@ class SubscriptionController extends Controller
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json", "Authorization: DEV-CD1T1C38T9B36CPBK4H1MCIF32V9OOK0:API-PCTBN1REOP5H67Q0BL2NCLDK38R8LVMK"));
 
 		// return transfer as string
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		//curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
 		$response = curl_exec($ch);
 		curl_close($ch);

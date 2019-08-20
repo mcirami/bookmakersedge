@@ -31,4 +31,8 @@ class Pick extends Model
 	protected $casts = [
 		'day' => 'date:m-d-Y',
 	];
+
+	public function scopeFilter($query, $filters) {
+		return $filters->apply($query);
+	}
 }
