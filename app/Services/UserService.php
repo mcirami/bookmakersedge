@@ -68,4 +68,32 @@ class UserService {
 		$error = "Current Password does not match what is stored";
 		return $error;
 	}
+
+	public function checkClickbankStatus($receipt) {
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, "https://api.clickbank.com/rest/1.3/orders2/" . $receipt);
+		curl_setopt($ch, CURLOPT_HEADER, true);
+		curl_setopt($ch, CURLOPT_HTTPGET, true);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json", "Authorization: DEV-CD1T1C38T9B36CPBK4H1MCIF32V9OOK0:API-PCTBN1REOP5H67Q0BL2NCLDK38R8LVMK"));
+		$result = curl_exec($ch);
+		curl_close($ch);
+
+		$decode = json_decode($result, true);
+
+		return strtolower($decode['orderData']['lineItemData']['status']);
+
+	}
+
+	public function checkTrialStatus($userRegisterDate) {
+
+		 if (strtotime($userRegisterDate) < strtotime('-7 days')) {
+		 	return false;
+		 }
+
+		 return true;
+	}
 }
