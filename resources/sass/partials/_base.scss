@@ -38,7 +38,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	height: 0;
 	position: relative;
 	cursor: pointer;
-	
+
 	iframe {
 		position: absolute;
 		top: 0;
@@ -68,11 +68,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	-moz-transition: .5s ease-in-out;
 	-o-transition: .5s ease-in-out;
 	transition:  .5s ease-in-out;
-	
+
 	&.slide {
 	 	transform: translate3d( -250px, 0, 0 );
 		-webkit-transform: translate3d( -250px, 0, 0 );
-		
+
 		&:before {
 			content: '';
 			position: absolute;
@@ -146,70 +146,70 @@ input[type="text"], input[type="email"], input[type="password"], textarea, selec
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
     cursor: pointer;
-	
+
 	@include media($tablet){
 		padding: 6px 12px;
 		font-size: 14px;
 	}
-	
+
 	@include media($mobile){
 		padding: 7px 10px;
 		font-size: 12px;
 	}
-	
+
 	@include media($smallMobile){
 		padding: 5px 8px;
 	}
-    
+
     &:hover {
         text-decoration: none;
     }
-		
+
 	&.white {
 		color: $darkRed;
 		background: $white;
-		
+
 		&:hover {
 			background: #ebebeb;
 		}
 	}
-	
+
 	&.black {
 		background: $black;
 		color: $white;
-		
+
 		&:hover {
 			background: #4D4D54;
 		}
 	}
-	
+
 	&.red {
 		background: $red;
 		color: $white;
-		
+
 		&:hover {
 			background: #c30b21;
 		}
 	}
-	
+
 	&.yellow {
 		background: $yellow;
 		color: $black;
-		
+
 		&:hover {
 			background: #c4a020;
 		}
 	}
-	
+
 	&.dark_red {
 		color: $white;
 		background: $darkRed;
-		
+
 		&:hover {
 			background: #62030f;
 		}
 	}
-	
+
 	&.round_button {
 		border: 1px solid #c1a310;
 		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fae78c+40,f3d438+55,f3d438+100 */
@@ -242,11 +242,11 @@ input[type="text"], input[type="email"], input[type="password"], textarea, selec
 
 .page_content_home {
 	padding-top: 84px;
-	
+
 	@include media($tablet){
 		padding-top: 80px;
 	}
-	
+
 	@include media($mobile){
 		padding-top: 50px;
 	}
@@ -278,6 +278,10 @@ input[type="text"], input[type="email"], input[type="password"], textarea, selec
 		.page_content_home {
 			padding-top: 0;
 		}
+
+        p.small {
+            font-size: 12px;
+        }
 	}
 }
 

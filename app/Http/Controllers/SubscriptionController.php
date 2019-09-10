@@ -65,12 +65,14 @@ class SubscriptionController extends Controller
 
 		$this->reinstateSubCurl($receipt);
 
+        return redirect('/member-home');
+
 	}
 
 	protected function trackingPostback() {
 
 		if ( isset( $_COOKIE['bookmakers-clickid'] ) ) {
-			$clickid = $_COOKIE['bookmakers-clickid'];
+			/*$clickid = $_COOKIE['bookmakers-clickid'];
 
 			$ch = curl_init();
 
@@ -88,7 +90,7 @@ class SubscriptionController extends Controller
 
 			curl_close($ch);
 
-			$decode = json_decode($response, true);
+			$decode = json_decode($response, true);*/
 
 			echo "<script type=\"text/javascript\">
 				new Image().src=\"https://cn.rtclx.com/conv/?v=NjA4MDIyMWUzZTA1ZjkwZmE5NTc5MmVmOThkMTk3YmE6MjU0MTM%3D&p=4229&r=\";
@@ -104,22 +106,20 @@ class SubscriptionController extends Controller
 		$ch = curl_init();
 
 		// endpoint url
-		curl_setopt($ch, CURLOPT_URL, $path);
+		curl_setopt($ch, CURLOPT_URL, $path);;
 
-		curl_setopt($ch, CURLOPT_HEADER, true);
+        curl_setopt($ch, CURLOPT_HEADER, true);
 
 		// set request as regular post
 		curl_setopt($ch, CURLOPT_POST, true);
 
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-
 		// set data to be send
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $receipt);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, "");
 
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
 		// set header
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json", "Authorization: DEV-CD1T1C38T9B36CPBK4H1MCIF32V9OOK0:API-PCTBN1REOP5H67Q0BL2NCLDK38R8LVMK"));
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/xml", "Authorization: DEV-CD1T1C38T9B36CPBK4H1MCIF32V9OOK0:API-PCTBN1REOP5H67Q0BL2NCLDK38R8LVMK"));
 
 		// return transfer as string
 		//curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -129,6 +129,5 @@ class SubscriptionController extends Controller
 
 		$decode = json_decode($response, true);
 
-		dd($decode);
 	}
 }

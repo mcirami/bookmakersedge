@@ -25,13 +25,8 @@ class HomeController extends Controller
      */
     public function index() {
 
-	    $picks = Pick::whereNotNull('grade')->get();
-	    $daysAgo      = Carbon::now()->subDays( 22 );
-	    foreach ( $picks as $key => $day ) {
-		    if ( strtotime( $day->day ) < strtotime( $daysAgo ) ) {
-			    $picks->forget( $key );
-		    }
-	    }
+        $dateMin = Carbon::now()->subDays( 21 );
+        $picks = Pick::orderBy('day', 'desc')->whereNotNull( 'grade' )->whereDate('day', '>=', $dateMin)->get();
 
 	    $clickid = (isset($_GET['clickid']) && $_GET['clickid'] != "") ? $_GET["clickid"] : "";
 

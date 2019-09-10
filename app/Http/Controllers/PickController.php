@@ -19,9 +19,12 @@ class PickController extends Controller
 	 */
 	public function index(PickFilters $filters) {
 
+        //$picks = Pick::latest()->filter($filters);
 
-		$picks = Pick::latest()->filter($filters);
-		$picks = $picks->get();
+        $today = Carbon::today();
+        $userID = Auth::user()->getAuthIdentifier();
+
+        $picks = Pick::latest()->where( 'day', $today)->where('user_id', $userID)->get();
 
 		$now = Carbon::now()->format('h:i A');
 		$lastPick = Pick::get()->last();
@@ -71,8 +74,9 @@ class PickController extends Controller
 
 	public function reports(PickFilters $filters){
 
-		$distinctDays = Pick::distinct()->filter($filters);
-		$distinctDays = $distinctDays->get(['day']);
+		//$distinctDays = Pick::distinct()->filter($filters);
+        $dateMin = Carbon::now()->subDays( 21 );
+        $distinctDays = Pick::distinct()->orderBy('day', 'desc')->whereNotNull( 'grade' )->whereDate('day', '>=', $dateMin)->get(['day']);
 
 		$picks = Pick::whereNotNull('grade')->get();
 
@@ -82,8 +86,10 @@ class PickController extends Controller
 
 	public function grade(PickFilters $filters) {
 
-		$distinctDays = Pick::distinct()->filter($filters);
-		$distinctDays = $distinctDays->get(['day']);
+		//$distinctDays = Pick::distinct()->filter($filters);
+
+        $dateMin = Carbon::now()->subDays( 21 );
+        $distinctDays = Pick::distinct()->orderBy('day', 'desc')->whereDate('day', '>=', $dateMin)->get(['day']);
 
 		$picks = Pick::get();
 		return view('member.picks.grade')->with(['picks' => $picks, 'distinctDays' => $distinctDays]);

@@ -25,13 +25,13 @@
                     <div class="row">
                         <div class="col-12 col-md-7">
                             <h2 class="text-uppercase">Sorry, Your Membership is no longer active...</h2>
-                            <h3 class="d-inline-block w-100">Don't miss out! </h3>
-                            <h3 class="mb-5 d-inline-block w-100">Join us for 30 days at only $50!</h3>
+                            <h3 class="mb-5 d-inline-block w-100">Stay with us! <br>Becoming a winner is in your sights!</h3>
                             {{--<a class="button yellow" href="http://1.jvax157.pay.clickbank.net/?cbskin=24677&email={{$email}}&name={{$name}}">Click Here To Keep Your Membership!</a>--}}
                             <form method="post" action="{{ url('/reinstate-subscription') }}">
                                 {{ csrf_field() }}
 
-                                <button class="button yellow">Click Here To Restart Your Membership!</button>
+                                <button class="button yellow m-auto">Click Here To Restart Your Membership!</button>
+                                <p class="small">Note: Membership can only be reinstated if you cancelled less than 60 days ago.</p>
                             </form>
 
                             {{--<a class="button yellow" href="https://api.clickbank.com/rest/1.3/orders2/{{$receipt}}/reinstate">Click Here To Restart Your Membership!</a>--}}
