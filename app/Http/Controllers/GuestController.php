@@ -51,8 +51,9 @@ class GuestController extends Controller
 
 		auth()->login($user);
 
-        if ( isset( $_COOKIE['bookmakers-clickid'] ) ) {
-            $clickid = $_COOKIE['bookmakers-clickid'];
+		$clickid = $user->click_id;
+
+        if ( $clickid ) {
 
             $ch = curl_init();
 

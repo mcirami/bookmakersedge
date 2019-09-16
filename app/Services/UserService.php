@@ -31,6 +31,8 @@ class UserService {
 		])->assignRole(['subscriber']);
 
 		auth()->login($user);
+
+		return $user;
 	}
 
 	public function createClickBankUser($request) {

@@ -23,15 +23,29 @@ class SubscriptionController extends Controller
 		return view('guest.free-register');
 	}
 
+    public function freeRegister2() {
+
+        $clickid = (isset($_GET['clickid']) && $_GET['clickid'] != "") ? $_GET["clickid"] : "";
+        setcookie("bookmakers-clickid", $clickid, time() + (86400 * 30), "/");
+
+        return view('guest.free-register2');
+    }
+
 	public function createNewFreeUser(RegistrationRequest $request, UserService $user) {
 
-		$user->createFreeUser($request);
+		$user = $user->createFreeUser($request);
 
-		$this->trackingPostback();
+        if ( isset( $_COOKIE['bookmakers-clickid'] ) ) {
 
-		$firePixel = "true";
+            $clickID = $_COOKIE['bookmakers-clickid'];
 
-		return redirect( '/member-home' )->with(['firePixel' => $firePixel]);
+            $user->click_id = $clickID;
+            $user->save();
+
+            $this->trackingPostback();
+        }
+
+		return redirect( '/member-home' );
 	}
 
 	/**
@@ -53,7 +67,15 @@ class SubscriptionController extends Controller
 		$name = $firstName . " " . $lastName;
 		$email = $user->email;
 
-		$this->trackingPostback();
+        if ( isset( $_COOKIE['bookmakers-clickid'] ) ) {
+
+            $clickID = $_COOKIE['bookmakers-clickid'];
+
+            $user->click_id = $clickID;
+            $user->save();
+
+            $this->trackingPostback();
+        }
 
 		return redirect('http://1.jvax157.pay.clickbank.net/?cbskin=24677&name=' . $name . '&email=' . $email);
 	}
@@ -71,31 +93,30 @@ class SubscriptionController extends Controller
 
 	protected function trackingPostback() {
 
-		if ( isset( $_COOKIE['bookmakers-clickid'] ) ) {
-			/*$clickid = $_COOKIE['bookmakers-clickid'];
+        /*$clickid = $_COOKIE['bookmakers-clickid'];
 
-			$ch = curl_init();
+        $ch = curl_init();
 
-			$path = "http://trafficmasters.trackyourstats.com/?uid=tfms&clickid=" . $clickid;
+        $path = "http://trafficmasters.trackyourstats.com/?uid=tfms&clickid=" . $clickid;
 
-			curl_setopt($ch, CURLOPT_URL, $path);
+        curl_setopt($ch, CURLOPT_URL, $path);
 
-			curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POST, true);
 
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $clickid);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $clickid);
 
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-			$response = curl_exec($ch);
+        $response = curl_exec($ch);
 
-			curl_close($ch);
+        curl_close($ch);
 
-			$decode = json_decode($response, true);*/
+        $decode = json_decode($response, true);*/
 
-			echo "<script type=\"text/javascript\">
-				new Image().src=\"https://cn.rtclx.com/conv/?v=NjA4MDIyMWUzZTA1ZjkwZmE5NTc5MmVmOThkMTk3YmE6MjU0MTM%3D&p=4229&r=\";
-				</script>";
-		}
+        echo "<script type=\"text/javascript\">
+            new Image().src=\"https://cn.rtclx.com/conv/?v=NjA4MDIyMWUzZTA1ZjkwZmE5NTc5MmVmOThkMTk3YmE6MjU0MTM%3D&p=4229&r=\";
+            </script>";
+
 	}
 
 	protected function reinstateSubCurl($receipt) {

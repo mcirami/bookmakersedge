@@ -26,6 +26,7 @@ Route::group(['middleware' => 'guest'], function() {
 	Route::get('/', 'HomeController@index')->name('guest.home');
 	Route::get('our-method', 'GuestController@method')->name('Our Method');
 	Route::get('free-register', 'SubscriptionController@freeRegister')->name('Register Free Now');
+    Route::get('free-register2', 'SubscriptionController@freeRegister2')->name('register2');
 	Route::post('free-register', 'SubscriptionController@createNewFreeUser');
 	Route::get('subscription-register', 'SubscriptionController@subscriptionRegister')->name('Subscribe Now');
 	Route::post('subscription-register', 'SubscriptionController@createClickBankUser');

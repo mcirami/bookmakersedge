@@ -23,9 +23,10 @@
                 <div class="my_container">
                     <div class="row">
                         <div class="col-12 col-md-7">
-                            <h2 class="text-uppercase mb-4">THERE IS NO SUCH THING AS A LOCK!</h2>
-                            <h2 class="mb-4 sub_title">Don’t buy the bullshit, winning is about longterm success!</h2>
-                            <div style="width:50%;height:0;padding-bottom:25%;position:relative; margin: 0 auto;"><iframe src="https://giphy.com/embed/mQvZiYEB2elvq" width="100%" height="100%" style="position:absolute; left:0; margin: 0 auto;" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p></p>
+                            <h2 class="text-uppercase mb-5 pb-2">WHY BUY ONE PICK WHEN YOU CAN BUY A WINNING FORMULA?</h2>
+                            <h2 class="mb-5 sub_title">Beating the bookie is all about long term success!</h2>
+                            <h2 class="mb-5 sub_title pb-5">Our daily picks have a proven record of winning and for those of you needing a big game, we have our FEATURED PICKS!!</h2>
+                            {{--<div style="width:50%;height:0;padding-bottom:25%;position:relative; margin: 0 auto;"><iframe src="https://giphy.com/embed/mQvZiYEB2elvq" width="100%" height="100%" style="position:absolute; left:0; margin: 0 auto;" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>--}}
                             <h3 class="mb-5"><a class="text_link" href="/free-register/">Signup NOW</a> and Get 7 Free Days</h3>
                             <div class="button_wrap">
                                 <a class="button yellow" href="/free-register/">Join Now For Free!</a>

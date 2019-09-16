@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="my_container">
-        <div class="page_content full_width form_wrapper">
+        <div class="page_content full_width form_wrapper mt-0" style="background:none; box-shadow: none; border: none;">
             <div class="panel panel-default">
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -16,13 +16,15 @@
 
                 <div class="panel-body">
 
+                    <img src="<?php echo asset('images/pick-img.jpg'); ?>" alt="">
+
                     <form id="checkout_form" class="register" action="{{ url('/free-register') }}" method="post">
 
                         {{ csrf_field() }}
 
-                        <h3 class="text-center">Complete the form to sign up FREE for 7 days!</h3>
+                        {{--<h3 class="text-center">Complete the form to sign up FREE for 7 days!</h3>--}}
 
-                        <div class="form-group row">
+                        {{--<div class="form-group row">
                             <div class="col-md-6">
                                 <label for="first_name" class="col-form-label">{{ __('First Name') }}</label>
 
@@ -45,7 +47,7 @@
                                         </span>
                                 @endif
                             </div>
-                        </div>
+                        </div>--}}
 
                         <div class="form-group row">
                             <label for="username" class="col-12 col-form-label">{{ __('Username') }} <sup>*</sup></label>
@@ -98,10 +100,15 @@
                         <div class="form-group row mt-4">
                             <div class="col-12">
                                 <div class="submit_button_wrap">
-                                    <div id="form_submit_span" class="mb-2">
-                                        <button name="payment_submit" id="payment_submit" class="button red">Sign Up</button>
+                                    <div id="form_submit_span" class="mb-2 text-center">
+                                        <button name="payment_submit" id="payment_submit" class="button red px-5 py-4 text-uppercase"><h2>Get Pick</h2></button>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <small class="text-uppercase">*Valid Email Required to Get Pick</small>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <p class="terms">By clicking "Sign Up" you agree to our <a target="_blank" href="/privacy-policy">Privacy Policy</a> & <a target="_blank" href="/terms-of-service">Terms of Service</a>.
+                                    <p class="terms text-center">By clicking "Get Pick" you agree to our <a target="_blank" href="/privacy-policy">Privacy Policy</a> & <a target="_blank" href="/terms-of-service">Terms of Service</a>.
                                 </div>
                             </div>
                         </div>

@@ -19,14 +19,16 @@
     </head>
 
     <body>
-        <header id="global_header">
-            @include('guest.layouts.navbar')
-        </header>
+        @if(Route::current()->getName() != 'register2')
+            <header id="global_header">
+                @include('guest.layouts.navbar')
+            </header>
+        @endif
         <div class="wrapper">
 
-            <div class="@if(Route::current()->getName() != 'guest.home') page_content_wrapper @endif">
+            <div class="@if(Route::current()->getName() != 'guest.home' && Route::current()->getName() != 'register2') page_content_wrapper @endif">
 
-                @if(Route::current()->getName() != 'guest.home')
+                @if(Route::current()->getName() != 'guest.home' && Route::current()->getName() != 'register2')
                     <div class="sub_header">
                         <h2><?php echo Route::currentRouteName(); ?></h2>
                     </div>
@@ -36,7 +38,10 @@
 
             </div>
 
-            @include('guest.layouts.footer')
+            @if(Route::current()->getName() != 'register2')
+                @include('guest.layouts.footer')
+            @endif
+
         </div><!-- wrapper -->
 
     </body>
