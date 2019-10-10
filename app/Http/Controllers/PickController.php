@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Filters\PickFilters;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\PicksRequest;
 use App\Services\PickService;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Pick;
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
+use App\Services\MailService;
 
 class PickController extends Controller
 {
@@ -36,10 +38,12 @@ class PickController extends Controller
 		return view('member.picks.submit')->with(['picks' => $picks, 'now' => $now, 'lastPick' => $lastPick]);
 	}
 
-	public function saveNewPicks(PicksRequest $request, PickService $picks) {
+	public function saveNewPicks(MailService $mail, PicksRequest $request, PickService $picks) {
 
 		$requests = $request->all();
 		$picks->savePicks( $requests );
+
+        $mail->newPickSubmitted();
 
 		//$request->session()->flash('Your Pick Has Been Saved', 'success' );
 		return redirect()->back()->with('flash', 'Your Pick Has Been Saved' );

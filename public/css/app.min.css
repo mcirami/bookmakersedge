@@ -9945,6 +9945,43 @@ select {
   display: none;
 }
 
+.verify_page {
+  padding: 10% 0 40%;
+}
+
+.verify_page .verify_box {
+  background: #f1f1f1;
+  padding: 20px 60px 40px;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+}
+
+.verify_page .verify_box h3 {
+  font-family: "robotobold", sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+.verify_page .verify_box .content_wrap {
+  background: #fff;
+  padding: 20px;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+}
+
+.verify_page .verify_box .content_wrap a {
+  font-family: "robotobold", sans-serif;
+  font-weight: 700;
+  color: #ddb72e;
+}
+
+.verify_page .verify_box .content_wrap a:hover {
+  color: #c4a020;
+}
+
 @font-face {
   font-family: "calvertmtbold2";
   src: url("/fonts/calvertmt-bold2-webfont.eot"), url("/fonts/calvertmt-bold2-webfont.ttf") format("truetype"), url("/fonts/calvertmt-bold2-webfont.woff") format("woff"), url("/fonts/calvertmt-bold2-webfont.woff2") format("woff2"), url("/fonts/calvertmt-bold2-webfont.svg#calvertmtbold2") format("svg");

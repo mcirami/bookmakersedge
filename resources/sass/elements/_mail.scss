@@ -1,0 +1,41 @@
+#global_header.mail_header {
+    position: relative;
+    background: $black;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.mail_content {
+    @include span-columns(12);
+    padding: 5% 0 20%;
+    text-align: center;
+    background: $lightGray;
+
+    .content_wrap {
+        width: 50%;
+        margin: 0 auto;
+        background: #fff;
+        padding: 60px 8%;
+        border: 7px solid #e4e4e4;
+    }
+
+    h2 {
+        margin-bottom: 40px;
+        font-size: 26px;
+    }
+
+    p {
+        font-size: 24px;
+    }
+
+    a {
+        @include robotobold;
+        color: $yellow;
+        font-size: 24px;
+        text-transform: uppercase;
+
+        &:hover {
+            color: #c4a020;
+        }
+    }
+}

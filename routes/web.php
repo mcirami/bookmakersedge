@@ -11,9 +11,7 @@
 |
 */
 
-
 Auth::routes();
-
 
 Route::group(['middleware' => 'web'], function() {
 	Route::get('logout', 'Auth\LoginController@logout');
@@ -30,6 +28,11 @@ Route::group(['middleware' => 'guest'], function() {
 	Route::post('free-register', 'SubscriptionController@createNewFreeUser');
 	Route::get('subscription-register', 'SubscriptionController@subscriptionRegister')->name('Subscribe Now');
 	Route::post('subscription-register', 'SubscriptionController@createClickBankUser');
+
+    Route::get('mailable', function () {
+
+        return new App\Mail\PickSubmitted();
+    });
 });
 
 Route::group(['middleware' => 'auth'], function(){

@@ -305,3 +305,39 @@ input[type="text"], input[type="email"], input[type="password"], textarea, selec
 [v-cloak] {
 	display:none;
 }
+
+.verify_page {
+    padding: 10% 0 40%;
+
+    .verify_box {
+        background: $lightGray;
+        padding: 20px 60px 40px;
+        border-radius: 6px;
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+
+        h3 {
+            @include robotobold;
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        .content_wrap {
+            background: $white;
+            padding: 20px;
+            border-radius: 6px;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+
+            a {
+                @include robotobold;
+                color: $yellow;
+
+                &:hover {
+                    color: #c4a020;
+                }
+
+            }
+        }
+    }
+}
