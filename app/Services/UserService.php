@@ -98,4 +98,12 @@ class UserService {
 
 		 return true;
 	}
+
+	public function unsubscribeFromNotifications($userID) {
+
+        $user = User::find($userID)->first();
+        $user->subscribed = false;
+
+        $user->save();
+    }
 }

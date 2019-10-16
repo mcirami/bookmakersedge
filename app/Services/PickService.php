@@ -26,7 +26,7 @@ class PickService {
 		$pick->game_time = $request['game_time'];
 		$pick->comment = $request['comment'];
 
-		$pick->save();
+		return $pick->save();
 	}
 
 	public function updatePick($request, $pick) {

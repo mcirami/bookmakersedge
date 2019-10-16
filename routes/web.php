@@ -18,6 +18,7 @@ Route::group(['middleware' => 'web'], function() {
 	Route::get('privacy-policy', 'GuestController@privacy')->name('Privacy Policy');
 	Route::get('terms-of-service', 'GuestController@terms')->name('Terms Of Service');
 	Route::get('thank-you', 'GuestController@thankYou')->name('Thank You');
+    Route::get('unsubscribe/{user}', 'NotificationController@index')->name('Unsubscribe');
 });
 
 Route::group(['middleware' => 'guest'], function() {
@@ -29,10 +30,10 @@ Route::group(['middleware' => 'guest'], function() {
 	Route::get('subscription-register', 'SubscriptionController@subscriptionRegister')->name('Subscribe Now');
 	Route::post('subscription-register', 'SubscriptionController@createClickBankUser');
 
-    Route::get('mailable', function () {
+   /* Route::get('mailable', function () {
 
-        return new App\Mail\PickSubmitted();
-    });
+        return new App\Mail\PickSubmittedEmail();
+    });*/
 });
 
 Route::group(['middleware' => 'auth'], function(){

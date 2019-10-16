@@ -9932,6 +9932,24 @@ select {
   }
 }
 
+.page_content.unsubscribe {
+  padding: 6% 0 16%;
+}
+
+.page_content.unsubscribe h2 {
+  font-size: 34px;
+}
+
+.page_content.unsubscribe p {
+  font-size: 24px;
+}
+
+.page_content.unsubscribe a {
+  font-family: "robotobold", sans-serif;
+  font-weight: 700;
+  color: #ddb72e;
+}
+
 .form-control {
   height: 35px;
   font-size: 16px;

@@ -291,6 +291,23 @@ input[type="text"], input[type="email"], input[type="password"], textarea, selec
     @include media($tablet) {
         padding: 40px 0;
     }
+
+    &.unsubscribe {
+        padding: 6% 0 16%;
+
+        h2 {
+            font-size: 34px;
+        }
+
+        p {
+            font-size: 24px;
+        }
+
+        a {
+            @include robotobold;
+            color: $yellow;
+        }
+    }
 }
 
 .form-control {
